@@ -1,0 +1,653 @@
+% uWaterloo Thesis Template for LaTeX 
+% Last Updated May 24, 2011 by Stephen Carr, IST Client Services
+% FOR ASSISTANCE, please send mail to rt-IST-CSmathsci@ist.uwaterloo.ca
+
+% Effective October 2006, the University of Waterloo 
+% requires electronic thesis submission. See the uWaterloo thesis regulations at
+% http://www.grad.uwaterloo.ca/Thesis_Regs/thesistofc.asp.
+
+% DON'T FORGET TO ADD YOUR OWN NAME AND TITLE in the "hyperref" package
+% configuration below. THIS INFORMATION GETS EMBEDDED IN THE PDF FINAL PDF DOCUMENT.
+% You can view the information if you view Properties of the PDF document.
+
+% Many faculties/departments also require one or more printed
+% copies. This template attempts to satisfy both types of output. 
+% It is based on the standard "book" document class which provides all necessary 
+% sectioning structures and allows multi-part theses.
+
+% DISCLAIMER
+% To the best of our knowledge, this template satisfies the current uWaterloo requirements.
+% However, it is your responsibility to assure that you have met all 
+% requirements of the University and your particular department.
+% Many thanks to the feedback from many graduates that assisted the development of this template.
+
+% -----------------------------------------------------------------------
+
+% By default, output is produced that is geared toward generating a PDF 
+% version optimized for viewing on an electronic display, including 
+% hyperlinks within the PDF.
+ 
+% E.g. to process a thesis called "mythesis.tex" based on this template, run:
+
+% pdflatex mythesis	-- first pass of the pdflatex processor
+% bibtex mythesis	-- generates bibliography from .bib data file(s) 
+% pdflatex mythesis	-- fixes cross-references, bibliographic references, etc
+% pdflatex mythesis	-- fixes cross-references, bibliographic references, etc
+
+% If you use the recommended LaTeX editor, Texmaker, you would open the mythesis.tex
+% file, then click the pdflatex button. Then run BibTeX (under the Tools menu).
+% Then click the pdflatex button two more times. If you have an index as well,
+% you'll need to run MakeIndex from the Tools menu as well, before running pdflatex
+% the last two times.
+
+% N.B. The "pdftex" program allows graphics in the following formats to be
+% included with the "\includegraphics" command: PNG, PDF, JPEG, TIFF
+% Tip 1: Generate your figures and photos in the size you want them to appear
+% in your thesis, rather than scaling them with \includegraphics options.
+% Tip 2: Any drawings you do should be in scalable vector graphic formats:
+% SVG, PNG, WMF, EPS and then converted to PNG or PDF, so they are scalable in
+% the final PDF as well.
+% Tip 3: Photographs should be cropped and compressed so as not to be too large.
+
+% To create a PDF output that is optimized for double-sided printing: 
+%
+% 1) comment-out the \documentclass statement in the preamble below, and
+% un-comment the second \documentclass line.
+%
+% 2) change the value assigned below to the boolean variable
+% "PrintVersion" from "false" to "true".
+
+% --------------------- Start of Document Preamble -----------------------
+
+% Specify the document class, default style attributes, and page dimensions
+% For hyperlinked PDF, suitable for viewing on a computer, use this:
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{report}
+
+% \renewcommand\thesection{\arabic{section}}
+\usepackage{}
+\usepackage{color}
+\usepackage[table,dvipsnames,usenames,xcdraw]{xcolor}
+\usepackage{gensymb}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{refcheck}
+% \usepackage{showframe}
+\usepackage[top=1in, bottom=1in, left=1.5in, right=1.5in]{geometry}
+\usepackage{minted}
+\usemintedstyle{emacs}
+\usepackage[margin=10pt,font=small,labelfont=bf,
+labelsep=endash, justification=centering]{caption}
+\usepackage{booktabs}
+
+\usepackage[pagestyles]{titlesec}
+\setcounter{secnumdepth}{4}
+% \setcounter{tocdepth}{4}
+
+\definecolor{gray75}{gray}{0.2}
+\newcommand{\vsp}{\hspace{8pt}}
+\newcommand{\vq}{$'$}
+\newcommand*\ruleline[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{1ex}\raisebox{-.8ex}{#1}\hspace{1ex}\hrulefill}}}
+
+\titleformat{\chapter}[hang]{\LARGE \sc}{\thechapter\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\LARGE \sc}
+\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+
+\titleformat{\section}[hang]{\Large \sc}{\thesection\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\Large \sc}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+
+\titleformat{\subsection}[hang]{\large \sc \bfseries}{\thesubsection\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\bfseries \large \sc}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+\titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc}{\textcolor{gray75}{$\vert\vert$}}{7pt}{\bfseries \sc}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+\titleformat{\paragraph}[hang]{\normalsize \bfseries \sc}{\textcolor{gray75}{$\vert\vert$}}{7pt}{\bfseries \sc}
+\titlespacing*{\paragraph}{0pt}{0pt}{0pt}
+
+% \newcommand{\mychapter}[2]{
+%     \setcounter{chapter}{#1}
+%     \setcounter{section}{0}
+%     \chapter{#2}
+%     % \addcontentsline{toc}{chapter}{#2}
+% }
+
+
+% For PDF, suitable for double-sided printing, change the PrintVersion variable below
+% to "true" and use this \documentclass line instead of the one above:
+%\documentclass[letterpaper,12pt,titlepage,openright,twoside,final]{book}
+
+% Some LaTeX commands I define for my own nomenclature.
+% If you have to, it's better to change nomenclature once here than in a 
+% million places throughout your thesis!
+\newcommand{\package}[1]{\textbf{#1}} % package names in bold text
+\newcommand{\cmmd}[1]{\textbackslash\texttt{#1}} % command name in tt font 
+\newcommand{\href}[1]{#1} % does nothing, but defines the command so the
+    % print-optimized version will ignore \href tags (redefined by hyperref pkg).
+%\newcommand{\texorpdfstring}[2]{#1} % does nothing, but defines the command
+% Anything defined here may be redefined by packages added below...
+
+% This package allows if-then-else control structures.
+\usepackage{ifthen}
+\newboolean{PrintVersion}
+\setboolean{PrintVersion}{false} 
+% CHANGE THIS VALUE TO "true" as necessary, to improve printed results for hard copies
+% by overriding some options of the hyperref package below.
+
+%\usepackage{nomencl} % For a nomenclature (optional; available from ctan.org)
+\usepackage{amsmath,amssymb,amstext} % Lots of math symbols and environments
+\usepackage[pdftex]{graphicx} % For including graphics N.B. pdftex graphics driver 
+\graphicspath{ {images/} }
+% Hyperlinks make it very easy to navigate an electronic document.
+% In addition, this is where you should specify the thesis title
+% and author as they appear in the properties of the PDF document.
+% Use the "hyperref" package 
+% N.B. HYPERREF MUST BE THE LAST PACKAGE LOADED; ADD ADDITIONAL PKGS ABOVE
+\usepackage[pdftex,letterpaper=true,pagebackref=false]{hyperref} % with basic options
+		% N.B. pagebackref=true provides links back from the References to the body text. This can cause trouble for printing.
+\hypersetup{
+    plainpages=false,       % needed if Roman numbers in frontpages
+    pdfpagelabels=true,     % adds page number as label in Acrobat's page count
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Work Report 400 - 20402024},    % title: CHANGE THIS TEXT!
+    pdfauthor={Prajna Kandarpa},    % author: CHANGE THIS TEXT! and uncomment this line
+    pdfsubject={Video Processing},  % subject: CHANGE THIS TEXT! and uncomment this line
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords, and uncomment this line if desired
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,        % false: boxed links; true: colored links
+    linkcolor=blue,         % color of internal links
+    citecolor=magenta,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+\ifthenelse{\boolean{PrintVersion}}{   % for improved print quality, change some hyperref options
+\hypersetup{	% override some previously defined hyperref options
+%    colorlinks,%
+    citecolor=black,%
+    filecolor=black,%
+    linkcolor=black,%
+    urlcolor=black}
+}{} % end of ifthenelse (no else)
+
+% Setting up the page margins...
+% uWaterloo thesis requirements specify a minimum of 1 inch (72pt) margin at the
+% top, bottom, and outside page edges and a 1.125 in. (81pt) gutter
+% margin (on binding side). While this is not an issue for electronic
+% viewing, a PDF may be printed, and so we have the same page layout for
+% both printed and electronic versions, we leave the gutter margin in.
+% Set margins to minimum permitted by uWaterloo thesis regulations:
+% \setlength{\marginparwidth}{0pt} % width of margin notes
+% % N.B. If margin notes are used, you must adjust \textwidth, \marginparwidth
+% % and \marginparsep so that the space left between the margin notes and page
+% % edge is less than 15 mm (0.6 in.)
+% \setlength{\marginparsep}{0pt} % width of space between body text and margin notes
+% \setlength{\evensidemargin}{0.1in} % Adds 1/8 in. to binding side of all 
+% % even-numbered pages when the "twoside" printing option is selected
+% \setlength{\oddsidemargin}{0.1in} % Adds 1/8 in. to the left of all pages
+% % when "oneside" printing is selected, and to the left of all odd-numbered
+% % pages when "twoside" printing is selected
+\setlength{\textwidth}{5.5in} % assuming US letter paper (8.5 in. x 11 in.) and 
+% side margins as above
+\raggedbottom
+
+% The following statement specifies the amount of space between
+% paragraphs. Other reasonable specifications are \bigskipamount and \smallskipamount.
+\setlength{\parskip}{\bigskipamount}
+
+% \linespread{value}
+% where value determine line spacing. This value is somewhat confusing, because:
+% Value	Line spacing
+% 1.0	single spacing
+% 1.3	one-and-a-half spacing
+% 1.6	double spacing
+\linespread{1.3}
+
+% By default, each chapter will start on a recto (right-hand side)
+% page.  We also force each section of the front pages to start on 
+% a recto page by inserting \cleardoublepage commands.
+% In many cases, this will require that the verso page be
+% blank and, while it should be counted, a page number should not be
+% printed.  The following statements ensure a page number is not
+% printed on an otherwise blank verso page.
+% \let\origdoublepage\cleardoublepage
+% \newcommand{\clearemptydoublepage}{%
+%   \clearpage{\pagestyle{main}\origdoublepage}}
+% \let\cleardoublepage\clearemptydoublepage
+
+% \newpagestyle{main}{
+% \sethead[\thepage][\chaptertitle][(\thesection] % even
+% {\thesection)}{\sectiontitle}{\thepage}} % odd
+\pagestyle{empty}
+\newcommand{\mtext}[1]{
+    $\text{#1}$
+}
+
+
+
+%======================================================================
+%   L O G I C A L    D O C U M E N T -- the content of your thesis
+%======================================================================
+\begin{document}
+
+% For a large document, it is a good idea to divide your thesis
+% into several files, each one containing one chapter.
+% To illustrate this idea, the "front pages" (i.e., title page,
+% declaration, borrowers' page, abstract, acknowledgements,
+% dedication, table of contents, list of tables, list of figures,
+% nomenclature) are contained within the file "uw-ethesis-frontpgs.tex" which is
+% included into the document by the following statement.
+%----------------------------------------------------------------------
+% FRONT MATERIAL
+%----------------------------------------------------------------------
+\input{uw-ethesis-frontpgs} 
+
+% T A B L E   O F   C O N T E N T S
+% ---------------------------------
+    \linespread{1.0}
+    \pagestyle{plain}
+    \setcounter{page}{2}
+    \renewcommand\contentsname{Table of Contents}
+    \tableofcontents
+    \cleardoublepage
+    \phantomsection
+    %\newpage
+    
+    % L I S T   O F   T A B L E S
+    % ---------------------------
+    \addcontentsline{toc}{chapter}{List of Tables}
+    \listoftables
+    \cleardoublepage
+    \phantomsection		% allows hyperref to link to the correct page
+    \newpage
+    
+    % L I S T   O F   F I G U R E S
+    % -----------------------------
+    \addcontentsline{toc}{chapter}{List of Figures}
+    \listoffigures
+    \cleardoublepage
+    \phantomsection		% allows hyperref to link to the correct page
+    %\newpage
+    
+    % L I S T   O F   S Y M B O L S
+    % -----------------------------
+    % To include a Nomenclature section
+    % \addcontentsline{toc}{chapter}{\textbf{Nomenclature}}
+    % \renewcommand{\nomname}{Nomenclature}
+    % \printglossary
+    % \cleardoublepage
+    % \phantomsection % allows hyperref to link to the correct page
+    % \newpage
+    
+
+%----------------------------------------------------------------------
+% MAIN BODY
+%----------------------------------------------------------------------
+% Because this is a short document, and to reduce the number of files
+% needed for this template, the chapters are not separate
+% documents as suggested above, but you get the idea. If they were
+% separate documents, they would each start with the \chapter command, i.e, 
+% do not contain \documentclass or \begin{document} and \end{document} commands.
+\linespread{1.6}
+% \pagestyle{main}
+\chapter*{Summary}
+\addcontentsline{toc}{chapter}{Summary}
+    The main purpose of this report is to give broad insight into the current state of video encoding technologies for various applications. The report introduces the burgeoning world of low power video sensor networks and talks about their applications in fields such as crowd, traffic and home surveillance and audio visual media (from an artistic context). 
+
+    The report then describes the computational capabilities available for low power video sensors by analyzing the technical specifications for one standard low power video camera with wireless capabilities, the Dakota Ultra-Low Power Day/Night Camera. These technical specifications are then used to come up with viable constraints for video processing benchmarks such as time taken to encode a frame, network bandwidth required for continuous transmission, latency and Quality of Experience (QoE). These constraints may also be thought of as targets for the video processing system to be implemented by a low power camera.
+
+    The report then introduces standard video processing techniques from a very low level so that the reader may gain insight into the computations and algorithms that power and drive today's digital media driven world. This is done to give the reader enough background knowledge to properly evaluate the project. Specifically, the structural anatomy of a video (on disk, in memory and during transport), is provided. Then, standard video processing techniques are described, namely encoding, decoding, transcoding and network transport. The report dives pretty deep into mathematical and image processing concepts that power video processing, and thus, a basic knowledge of signal processing techniques and linear algebra is assumed. The mathematical theorems that govern data redundancy reduction and computationally efficient algorithm design are explained from a higher level as a lot of the math was beyond an undergrad engineering student's grasp.
+    
+    A comprehensive analysis of standard video processing techniques including encoding, decoding and transcoding is presented from the perspective of their applicability to a network distributed video collection system. The various protocols available that enable video transport over a network aren't covered in much detail, however. The aforementioned distributed system has a server that acts as the centralized repository of video streams from each of the video sensors in the network. The process occurs sequentially starting from the capture of raw frames by a physical sensor, to the raw frames being encoded to a bit-stream by a video codec, the transportation of this bit-stream over a network to the centralized server and the final processing task, which involves using multi-view coding techniques to generate a multi-dimensional representation of all the videos. 
+
+    The standard video codec covered by this report is the ubiquitous H.264/HVC compression standard developed by the ITU-T Video Coding Experts Group (VCEG) together with the ISO/IEC JTC1 Moving Picture Experts Group (MPEG). It is one of the most widely used video standards with applications including Internet streaming, Blu-ray disks and HDTV broadcasts over satellite and cable networks. The advantages offered by this video codec include providing imperceptible quality loss at lower bitrates than other standards and perhaps, the most important one, its ability to integrate well with existing video encoding and transmission infrastructure across a wide range of applications. 
+
+    The report then presents an overview of the technologies behind the new video encoding technique known as Distributed Video Coding (DVC). The main advantages offered by video codecs that implement DVC include offloading encoding complexity to the decoder, which, for the purposes of this report happens on the centralized server. DVC is very flexible in that it allows user configurable distribution of coding complexity between the encoder and decoder based on application requirements. Two experimental video codecs implemented by researchers, namely the PRISM codec and DISCOVER codec are presented and their performance, characterized by the results of a few research papers, is analyzed based on the objectives defined for the low power video sensor. 
+
+    The report then analyses a publicly available dataset of the transcoding performance of a few thousand youtube videos. This dataset includes characteristics such as input codec, frame-rate, size and output codec, frame-rate, bitrate and most importantly, memory and cpu time taken to transcode the input video to output video. This dataset is used to train two classes of statistical regression models, namely linear regression and non-linear regression models, to be able to predict the cpu time and memory required for transcoding. The videos in the dataset use 4 different codecs - flv, h264, mpeg4 and vp6. The transcoding was performed using the most widely used open source audio/video processing library, FFmpeg.
+
+    The linear regression models trained using the dataset include Partial Least Squares Regression (PLS), Elastic Nets (ENET), Multiple Linear Regression (LM) and Robust Linear Models (RLM). The second class of non-linear regression models covered include k-Nearest Neighbors (kNN), Neural Networks (NN), Model Averaged Neural Networks (avNNet), Multivariate Adaptive Regression Splines (MARS) and finally, Support Vector Machines (SVM). All of the analyses are implemented using the statistical programming language, R using the packages \textit{caret} and \textit{AppliedPredictiveModelling}. The results from all the models are evaluated using two metrics, namely $R^2$ and $\text{Root Mean Squared Error}$, which are the statistical performance metrics for regression models.
+
+    It is to be noted that the transcoding performance in the youtube dataset was measured on a fairly standard server computer with a high amount of processing power. However, the rationale behind training multiple models using this dataset is to be able to predict transcoding times for standard codecs irrespective of the computational power of the machine on which the transcoding operation is being run. This was done since there was no way to measure the computational encoding performance on an actual low power video sensor.
+
+    In conclusion, this report agrees on the advantages offered by the DVC based codecs and recommends anyone interested in such application to research them and try to build new products based on these codecs to become future proof.
+\cleardoublepage
+% Change page numbering back to Arabic numerals
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+    \section{Background}
+
+        The deployment of high-speed, wired and wireless networks such as 802.16, 802.16a, and 802.11b/g and the explosion of digital camera equipped cellular phones has already provided basic infrastructure for supporting communications in high data-rate wireless video sensor networks. These networks can find their way into many real-time applications needing video-based active monitoring of telemetry data in such diverse indoor and outdoor environments as hospitals, hotels, parking lots, highways, airports, and international borders. Typical video sensor networks are made up of multiple cameras with varying degrees of spatially and temporally overlapping coverage, generating correlated signals that need to be processed, compressed, and exchanged in a loss-prone wireless environment to facilitate real-time decisions. However, the sheer volume of visual data involved, with video signals ranging from a few hundreds of kilobits per second to a few megabits per second and more, poses new and unique challenges. There are numerous challenges to be addressed in order to make the second generation of broadband enabled wireless sensor video networks to take hold.
+
+        A broadband network of wireless video sensors is subjected to three principal constraints:
+        \begin{enumerate}
+            \item {Limited processing capabilities and diverse display resolutions due in part to inexpensive device designs and limited battery power. These call for lightweight signal processing and compression algorithms at the individual sensor nodes and an architecture that can adapt to the differing processing capabilities of the encoding and decoding nodes.}
+            \item {Limited power/energy budget requiring careful manage- ment for maximizing network lifetime, the quality of the acquired data, and the accuracy of the decisions. Communication is often the dominant power-consuming activity. Power management requires efficient compression algorithms that maximize the power utilization per bit communicated and controlled dormancy cycles in inter-sensor communication that preclude frequent intersensor communication. This motivates the need for distributed coding and processing.}
+            \item {Information loss that is endemic to the harsh, loss-prone, wireless communication environment. This calls for robust coding algorithms, communication and networking protocols, and architectures that are immune to single points of failure. It is important to proactively build in robustness considerations into the architectural foundation rather than as after-thought bandage fixes.}
+        \end{enumerate}
+
+        The technologies that can make this vision a reality are within the reach of the general consumer and before them, entrepreneurs and electronics enthusiasts who would like to drive this revolution. Motivated by the enormous impact these technologies could potentially have, a survey of the general state of video encoding technologies revealed a growing interest among the Research and Development community in the field of Distributed Video Coding. 
+
+        With the above constraints, the traditional views of video coding and transmission as being confined to a “downlink” scenario (such as television broadcast or download from a video server) need to be relaxed. In the prevalent video coding architectures such as MPEG-x and H.26x, video encoding is the primary computationally intensive task with the complexity dominated by the motion-search operation. Conventional video decoding, on the other hand, has significantly lower complexity. This skewed, somewhat rigid, complexity compartmentalization conflicts with the heterogeneous processing capability requirements of video sensor networks where the encoding units might be able to do only “lightweight” processing but the relay or decoding units might be more capable. The prevalent video coding architectures are also built upon the principle of (deterministic) predictive coding from which they derive their compression efficiency. 
+
+        
+
+\chapter{Objectives}
+    \label{chap:objs}
+    
+
+\chapter{Video Processing And Transport}
+    
+    \section{Anatomy of a video}
+        Digital videos are ubiquitous in the era of endless streaming/download/playback services such as Youtube, Netflix and VLC.
+        
+        Digital video is an ordered sequence of digital images, known as frames, played in succession at a given rate, usually represented as a framerate (frames per second or\mtext{fps}). 
+        
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{vidarch}
+            \caption{Matrix representation of a video and its component frames}
+            \label{vidarch}
+        \end{figure}
+        
+        A grayscale video, represented by $V$, is a sequence of images $$ V = I_1, I_2, ... I_n, n = \text{number of frames in the video}$$, and $$I_k \mid k=1...n$$ is the matrix representation of an image of dimension $a \times b$. Please refer to Fig. \ref{vidarch} for a visual representation of the matrix images. Each image, $I_k$ consists of grayscale(brightness or intensity) values from a finite set $C$ of size $c$, where $$C = \{x \mid x = 0, 1, 2, ...N_c -1\}$$. A pixel is the basic unit of processing in images. Its location in a video maybe denoted by the 3-D co-ordinates 
+        $$(k, m, n) \text{where } (k, m, n) = \text{(frame number, row number, column number)}$$
+        
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=0.5\textwidth]{framearch}
+            \caption{Location of pixel $I_2(0,2)$ in a video frame}
+            \label{framearch}
+        \end{figure}
+        
+        The 3-D co-ordinates may also be represented by $I_k(m, n) \in C$. A visual representation of a pixel $I_2(0,2)$ is shown in Fig. \ref{framearch}\cite{Kundur}.
+        
+        Videos with color information use a similar representation with an additional color component. Pixels in color video frames may be represented by $$P(I_k, C_t, m, n )$$ where $C_t$ represents the color component numbered $t$. For example, an RGB image can have three possible values for t, i.e., $t \in (1, 2, 3)$. So, $P(I_k, C_t, m, n)$ represents the value of the color component $C_t$ for the pixel with frame co-ordinates $(m, n)$ and frame $I_k$ \cite{Lefevre2003}.
+
+        Videos can be said to have two main representations in digital media - Pre-recorded videos and live/streamable videos. Disk based videos are playable files that may be stored on a personal computing device or a cloud server. These are binary representations of the video data, obtained by compressing raw video frames to achieve optimal spatiotemporal data representation, i.e., reduce redundant data in frames using a combination of motion tracking, Fourier or Discrete Cosine Transforms, Quantization and Variable Length Encoding \cite{Choupani}.
+        \subsection{Pre-recorded Videos}
+            Disk based video file formats may contain uncompressed video footage (RAW format) or encoded video footage (MP4, AVI, etc. formats). Most consumer focused video file formats consist of the following components:
+            \subsubsection{Container}
+                The container stores the video and/or audio data using separate encoding formats for video and audio. Popular container types include Matroska(MKV), FLV, Ogg, AVI, etc. It is to be noted that container selection constrains the available video encoding formats. The following table lists a few popular containers and their supported encoder formats.
+
+                \begin{table}[!h]
+                    \centering
+                    \begin{tabular}{@{}|l|l|l|l|@{}}
+                    \toprule
+                    \rowcolor[HTML]{9B9B9B} 
+                    Name             & File Extension & Container & Coding Formats                                                               \\ \midrule
+                    MPEG-4(MP4)      & .mp4          & MPEG-4 Part 12  & H.264                                                                         \\ \midrule
+                    Matroska         & .mkv           & Matroska  & Any                                                                                \\ \midrule
+                    Flash Video(FLV) & .flv           & FLV       & H.264, VP6 \\ \bottomrule
+                    \end{tabular}
+                    \caption{Some common video containers and compatible video coding formats}
+                    \label{my-label}
+                \end{table}
+
+            \subsubsection{Video coding(encoding) format}
+                A video coding format (or sometimes video compression format) is a content representation format for storage or transmission of digital video content (such as in a data file or bitstream). Examples of video coding formats include MPEG-2 Part 2, MPEG-4 Part 2, H.264 (MPEG-4 Part 10), HEVC, Theora, Dirac, RealVideo RV40, VP8, and VP9.
+
+        \subsection{Live/Streaming Videos}
+            Streamable videos are defined as multimedia that is constantly received by and presented to an end user while being delivered by the provider. Streaming refers tot he delivery method of the video, rather than the video itself, and is an alternative to downloading a full video file. This report deals specifically with live streaming videos, which involves a source media type, a screen recorder in this case, an encoder to digitize the content, and a transport medium, usually one of HTTP, RTSP or RTP. 
+
+            The main difference between downloadable and streamable videos is speed with which the end user may start watching the video. In case of downloadable videos (files), the user has to wait till the entire file has downloaded to be able to start playing the video. Streamable videos, however, make use of video codecs that are tailored to give the option of beginning playback from any position. They can make this happen by using multiple frame types, frame prediction methods. One frame type in particular, known as a keyframe, enables this resume capacility of video from any position because of its decoupled nature from preceding and succeeding frames. Keyframes are implemented differently by video codecs but their essential function stays the same across all codecs. H.264, has a structure that enables interoperability during the video decode process with older video standards. The operational specifics of H.264 are explained in detail in Section \ref{sub:H.264}.
+
+    \section{Video Processing}
+        Video processing consists of three main processes - Encoding, Decoding and Transcoding
+        \subsection{Encoding and Decoding}
+            Encoding involves the analysis of uncompressed video files (RAW format) to remove redundant and/or visually indiscernible data and generate a bitstream representation of the video. This bitstream representation may then be used to generate files and/or streamable videos. Decoding involves recovering a playable (streamable) video from the bitstream generated by the encoding process. A \textit{video codec} is a program that can perform both encoding and decoding of a video or bitstream respectively. 
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{codec}
+                \caption{Structure of a video codec}
+                \label{codec}
+            \end{figure}
+
+            The general structure of a video codec is shown in Fig. \ref{codec}. It is important to note that the network transport stage of a streamable video involves sending this bitstream representation of a video to an end-user's browser or video playback application like VLC or Quicktime. Decoding occurs in the end-user application via available software or hardware codecs.
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{videnc}
+                \caption{Digital video produced through compression techniques}
+                \label{videnc}
+            \end{figure}
+
+            This process of data reduction is called video compression or encoding. When videos are captured by a camera, they are usually stored in an uncompressed format where each frame contains all the original data recorded by the capture device. This process is shown in Fig. \ref{videnc}. As evident in the figure, there are two sampling subprocesses, namely Spatial Sampling and Temporal Sampling, that are executed serially to produce a compressed video. 
+
+            The data present in video frames can have 4 kinds of redundancies \cite{Saggi2010}.
+            % \begin{itemize}
+            %     \item {
+            \subsubsection{Temporal Redundancy} % (fold)
+            \label{sub:temporal_redundancy}
+                Temporal Redundancy: Since the elapsed time between two consecutive frames is generally very short, consecutive frames tend to be very similar in contant and thus, contain a lot of data redundancy. The differences between consecutive frames may be expressed by considering the displacements of objects in the frames and encoding this motion$'$s vectors and differences. 
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{tempredun}
+                    \caption{Demonstration of temporal redundancy\cite{Kundur}}
+                    \label{tempredun}
+                \end{figure}
+
+                To simplify this procedure, a frame is divided into small fixed (H-261, MPEG-1 encoders) or variable sized blocks(H.263, MPEG-4, H.264 encoders). Motion detection may then be performed by using a statistical measure to determine the best match for a block in a window centered at the block$'$s position in the second frame \cite{Choupani}.
+
+            \subsubsection{Psycho Visual Redundancy} % (fold)
+                \label{sub:psv_redundancy}  
+                Psycho Visual Redundancy: Since the target audience for 99.99\% of all videos is a human recipient, the capabilities of the human visual system (HVS) need to be taken into acccount before encoding. The HVS is very sensitive to changes in luminance aka intensity compared to changed in chromaticity (color). In fact, the HVS is extremely good at inderring color details based on the intensity levels in an image. This knowledge maybe used to selectively subsample the color data in a frame while keeping the intensity data unchanged. 
+
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{psychredun}
+                    \caption{Subsampling chromaticity to achieve data reducton\cite{Choupani}}
+                    \label{psychredun}
+                \end{figure}
+
+                A frame maybe divided into macro blocks which are further divided into three layers with each layer holding one of the color components of the macroblock pixels. YCbCr is the color space used in almost all video coding standards because of its compatibility with the YUV color space used in most displays and televisions and its ability to separate chromaticity from intensity. If the macro block layer for each of Y, Cb and Cr components has 4 8x8 blocks, the Cb and Cr components can each be subsampled to 1 8x8 blocks. The format obtained in this way is referred to as 4:2:0 and the subsampling creates a data reduction of about 50\%. A macro block converted to 6 blocks of 8x8 each using 4:2:0 mode is shown in Fig. \ref{psychredun}
+                % }
+                % \item {
+            \subsubsection{Spatial Redundancy} % (fold)
+            \label{sub:spatial_redundancy}
+                In any given frame, a pixel$'$s value is correlated to its neighboring pixel values most of the time. Thus, this value maybe predicted to a certain extent given the values of its neighboring pixels. An example is shown in Fig. \ref{spatredund}. High correlation means that pixels within a neighborhood have similar colors and zero correlation can mean that pixels in a neighborhood are unrelated in color.
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{spatredund}
+                    \caption{Demonstration of spatial redundancy\cite{Kundur}}
+                    \label{spatredund}
+                \end{figure}
+                Spatial redundancy may be reduced by using transforms such as Discrete Cosine Transform (DCT) or Discrete Wavelet Transform (DWT). These values are then quantized and converted to 1-D vectors by reading their values in zig-zag order. These transforms eliminate high frequency pixel values with low energy content. 
+
+                The quality of the image/frame is directly related to this elimination, which means a trade-off between quality and compression ratio can be achieved based on constraints imposed by the transmission/playback medium of the video. A video meant to be consumed from disk based file systems can be allowed to retain more data during encoding while videos created for a streaming medium would need to take network bandwidth into consideration to determine an optimal compression ratio.
+
+                In case of our application, the video is meant to recorded, encoded and sent over the network like a streamable video. So, higher compression ratios are desired while still being able to maintain video resolution and clarity rivaling HDMI (720p HD or 1280x720 frame dimensions).
+
+                The process followed to achieve an optimum compression ratio is explained in later sections.
+
+            \subsubsection{Statistical Redundancy}
+                The process of reducing statistical redundancy is known as entropy coding. Entropy coding needs to occur after spatial redundancy reduction for optimum compression. The quantized frame data obtained after spatial redundancy reduction is then compressed by Run Length Encoding (RLE) and the resulting values are coded (each unique value gets a unique binary representation) using Huffman encoding. 
+
+            \subsubsection{Live video considerations}
+                Since temporal redundancy reduction makes use of the differences between consecutive frames, this may result in an accumulation of errors even if a frame experiences corruption during network transport. 
+
+                This scenario can happen if the network transport method used is UDP (User Datagram Protocol), as UDP does not guarantee packet delivery and correct order of packet delivery as is the case with the TCP/IP protocol (used by HTTP). However, UDP is extremely useful for low latency data transmission due to its lack of error correction mechanisms that can guarantee packet delivery without corruption. The operational nature of UDP is commonly referred to as "send and forget".
+                % \begin{figure}[!h]
+                %     \centering
+                %     \includegraphics[width=0.8\textwidth]{frametypes}
+                %     \caption{An example sequence of I, P and B frames in a video\cite{Choupani}}
+                %     \label{frametypes}
+                % \end{figure}
+
+                Encoding methods that depend only on the previous frame create a serially accesible frame sequence that requires that the end user download and decode all frames before a particular frame to be able to correctly view the frame. This drawback has been overcome in various ways by different codecs. For example, the MPEG-2 codec uses multiple types of frames, with each type differentiated by the amount of data they hold and dependence on previous or future frames.
+
+                % Special frame types called I-frames (Intra-coded frames), P-frames (Predicted picture) and B-frames (Bi-predictive frame) were invented to overcome this limitation and enable video playback from almost any seek position. An I-frame is an independent frame which is encoded without considering the previous frames. I-frames are also known as \textit{keyframes} and they are very similar to a static image file in that their decode process is completely independent of every other frame. A P-frame is a uni-directional difference frame obtained from either the previous I or P-frame. A B-frame encodes the difference between its previous and next P or I frames.\cite{Choupani}
+
+                % I-frames are much bigger in size in comparision to P-frames and B-frames as they are completely independent of any frame. Thus, they cannot have any data redundancy reduction techniques applied to them during the encoding process. In terms of size taken up by each frame type, the following order is noticed:
+                % $$ size(I-frame) > size(P-frame) > size(B-frame)$$
+                % I-frames are the biggest, P-frames follow and B-frames have the least size and least data redundancy because of their ability to use frames before and after for data reference during decoding.
+
+                Further improvements to video codecs resulted in the development of the H.264/AVC standard described in the following section. The performance and interoperability offered by the H/264 encoder absolutely blew every other encoder out of the water, especially for applications dependent on network transport.
+
+        \subsection{H.264/AVC encoder}
+        \label{sub:H.264}
+            The H.264 encoder includes a set of improvements to the video coding process that provides enhanced compression performance relative to other encoders like MPEG-2 and VP6. The enhancements provided by H.264 specifically target broadcast, streaming, video telephony and other network friendly video representations. It provides significant improvement in rate distortion efficiency relative to existing standards \cite{Wiegand2003}. All of these features have enabled the H.264 codec to sort of become the de facto standard for video compression for network streaming applications. 
+
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{h264struct}
+                \caption{Structure of H.264/AVC encoder\cite{Ostermann2004}}
+                \label{h264struct}
+            \end{figure}
+
+            A general architecture of the H.264/AVC codec is provided in Fig. \ref{h264struct}. For efficient transmission in different environments not only coding efficiency is relevant, but also the seamless and easy integration of the coded video into all current and future protocol and network architectures. This includes the public Internet with best effort delivery, as well as wireless networks expected to be a major application for the new video coding standard. The adaptation of the coded video representation or bitstream to different transport networks was typically defined in the systems specification in previous MPEG standards or separate standards like H.320 or H.324. However, only the close integration of network adaptation and video coding can bring the best possible performance of a video communication system. 
+
+            Therefore H.264/AVC consists of two conceptual layers. The video coding layer (VCL) defines the efficient representation of the video, and the network adaptation layer (NAL) converts the VCL representation into a suitable format for specific transport layers or storage media. For circuit-switched transport like H.320, H.324M or MPEG-2, the NAL delivers the coded video as an ordered stream of bytes containing start codes such that these transport layers and the decoder can robustly and simply identify the structure of the bitstream. For packet switched networks like RTP/IP or TCP/IP, the NAL delivers the coded video in packets without these start codes \cite{Ostermann2004}.
+
+            The following features describe the important features of the H.264 codec that make it a better choice over previous coding standards:
+            \subsubsection {Intra Prediction}
+                Intra prediction means that the samples of a macroblock in a frame (slice, in case of H.264) are predicted by using information of already transmitted macroblocks of the same frame. It is to be noted that each image is divided up into smaller packets (NALs) which can be read into macroblocks. H.264 uses varying modes for Intra Frame Prediction depending upon the rates of change of luminance and chromaticity in the image. 
+
+            \subsubsection {Motion Compensated Prediction}
+                This is a form of inter-frame (image) prediction. In this case, the macroblocks of an image can be predicted from already transmitted macroblocks of previous reference images. H.264 differs from previous standards (specifically, MPEG) in that it can use several preceding reference images for motion compensation prediction. For this purpose, an additional picture reference parameter has to be transmitted along with the standard motion displacement vectors usually needed for motion compensation prediction as described in Section \ref{sub:temporal_redundancy}.
+
+            \subsubsection {Block Transform Coding}
+                Former standards such as MPEG-1 and MPEG-2 used a Discrete Cosine Transform (DCT) with block size 8x8 for the purpose of transform coding. H.264 mainly uses 4x4 block sizes while switching to 2x2 blocks in special cases. It also uses 3 different kinds of applied integer transforms instead of a DCT. The first transform type of size 4x4 is applied to all samples of luminance and chromaticity components regardless of whether motion compensation prediction or intra prediction was applied. The other two types of transforms are Haddard transforms of sizes 4x4 and 2x2 respectively. 
+
+                Compared to the DCT, the applied integer transforms used in H.264 have only integers between -2 and 2 in their transform matrix. This allows computing the transform and inverse transform in 16-bit arithmetic using only low complexity shift, add and subtract operations \cite{Ostermann2004}.
+
+            \subsubsection {Entropy Coding Schemes}
+                Entropy coding is used to reduce statistical redundancy, i.e., use lower number of bits to represet values that occur with high frequencies and a high number of bits to represent values that occur with low frequencies. This reduces the amount of data needed to represent the overall data required to make up the data.
+
+        \subsection{Transcoding}
+            Video transcoding refers to the process of data exchange between heterogenous multimedia networks to reduce the complexity and transmission time by avoiding total decoding and re-encoding of a video bitstream. Despite the fact that a video stream is generated by eliminating all redundancies, many network channels may not have the necessary capabilities to handle these streams. This restriction may be overcome by reducing the video data size through a change in video format. In terms of video properties, this change can be affected by changing bits per pixel, pixels per frame (pixel density reduction), frames per second, video content or coding standard \cite{Choupani}.
+
+            Video transcoding for real-time applications on raw video data is extremely time consuming because of the motion estimation and data transformation operations. Acceptable transcoding performance for real time operations can be achieved however, if the conversion of video formats is performed on compressed data rather than raw data. A few effective compressed data video transcoding techniques include:
+            \begin{itemize}
+                \item{Bitrate transcoding}
+                \item{Spatial transcoding}
+                \item{Temporal transcoding}
+                \item{Standard transcoding}
+            \end{itemize}
+            A description of these techniques was deemed to be beyond the scope of this report, but more information may be found in the paper cited here \cite{Choupani}.
+
+            In summary, it can be said that transcoding is something of an art form whereby one must balance dozens of requirements, formats, parameters and more. General video transcoding best practices are presented as follows:
+            \begin{itemize}
+                \item{Always encode for a specific quality rather than relying on bitrates. With bandwidth availability increasing across the board there is no need for using a target bitrate unless a specific limited device is being targeted (applicable to StremBox) or the quality required is unrealistic within bitrate constraints (in which case quality expectations have to be lowered)}
+                \item{Avoid upscaling video dimensions from the original dimensions as this only blurs the video. In general, video players do automatic upscaling to make the video fit device screen, so it isn't necessary to do this during transcoding.}
+                \item{Using Free and Open Source software like FFmpeg and libx264\cite{Video68:online} is highly recommended. These libraries have a community of video experts offering help and are very friendly. A lot of money may be saved by not using licensed and proprietary tools while still being able to provide insanely good video quality.}\cite{Trans44:online}
+            \end{itemize}  
+
+\chapter{Distributed Video Coding}
+    \section{Overview}
+        Distributed Video Coding (DVC) is ideally suitable to fulfill the above demand. DVC proposed a dramatic structural change to video coding by shifting the majority of complexity conventionally residing in the encoder towards the decoder by implementing distributed source coding concepts. The major task of exploiting the source redundancies to achieve the video compression is accordingly placed in the decoder. The DVC encoder thus performs a computationally very inexpensive operation enabling a significantly low cost implementation of the signal processor in DVC based video cameras\cite{Weerakkody2007}.
+        
+        \subsection{Slepian-Wolf (SW) Theorem for Lossless Coding}
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=0.5\textwidth]{swtheory}
+                \caption{Achievable rates of lossless coding by distributed coding of two statistically dependent random signals\cite{Dufaux2009}}
+                \label{swtheory}
+            \end{figure}
+            The SW theorem establishes some lower bounds on the achievable rates for the lossless coding of two or more correlated sources. More specifically, let us consider two statistically dependent random signals X and Y . In conventional coding, the two signals are jointly encoded and it is well known that the lower bound for the rate is given by the joint entropy H (X , Y ). Conversely, with distributed coding, these two signals are independently encoded but jointly decoded. In this case, the SW theorem proves that the minimum rate is still H (X , Y ) with a residual error probability which tends towards 0 for long sequences. Figure \ref{swtheory} illustrates the achievable rate region. In other words, SW coding allows the same coding efficiency to be asymptotically attained. However, in practice, finite block lengths have to be used. In this case, SW coding entails a coding efficiency loss compared to lossless source coding, and the loss can be sizeable depending on the block length and the source statistics.
+        \subsection{Wyner-Ziv(WZ) Theory}
+            Wyner and Ziv extended the Slepian-Wolf theorem by characterizing the achievable rate- distortion region for lossy coding with Side Information (SI). More specifically, WZ showed that there is no rate loss with respect to joint encoding and decoding of the two sources, under the assumptions that the sources are jointly Gaussian and an MSE distortion measure is used. This result has been shown to remain valid as long as the innovation between X and Y is Gaussian.
+
+    \section{PRISM Encoder}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{prism}
+            \caption{Architecture of PRISM coding\cite{Dufaux2009}}
+            \label{prism}
+        \end{figure}
+        PRISM, which stands for Power-efficient, Robust, hIgh compression Syndrome-based Multimedia coding, is one of the early practical implementations of DVC. This architecture is shown in Figure \ref{prism}. More specifically, each frame is split into 8 × 8 blocks which are DCT transformed. Concurrently, a zero-motion block difference is used to estimate their temporal correlation level. This information is used to classify blocks into 16 encoding classes. One class corresponds to blocks with very low correlation which are encoded using conventional Intra- coding. Another class is made of blocks which have very high correlation and are merely signaled as skipped. Finally, the remaining blocks are encoded based on distributed coding principles. More precisely, syndrome bits are computed from the least significant bits of the transform coefficients, where the number of least significant bits depends on the estimated correlation level. 
+
+        The lower part of the least significant bit planes is entropy coded with a (run, depth, path, last) 4-tuple alphabet. The upper part of the least significant bit planes is coded using a coset channel code. For this purpose, a BCH code is used, as it performs well even with small block-lengths. Conversely, the most significant bits are assumed to be inferred from the block predictor or Side Information (SI). In parallel, a 16-bit Cyclic Redundancy Check (CRC) is also computed. At the decoder, the syndrome bits are then used to correct predictors, which are generated using different motion vectors. The CRC is used to confirm whether the decoding is successful.
+        \subsection{PRISM encoder performance}
+
+    \section{DISCOVER Encoder}
+        \subsection{DISCOVER Encoder Performance}
+
+\chapter{Regression Analysis of Youtube Videos}
+    \section{Dataset Characteristics}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{codec_hist}
+            \caption{Histogram of videos by codec type in the youtube dataset}
+            \label{codec_hist}
+        \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{framerate_hist}
+            \caption{Jitter plots of framerates separated by codec type}
+            \label{framerate_hist}
+        \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{bitrate_hist}
+            \caption{Jitter plots of bitrates separated by codec type}
+            \label{bitrate_hist}
+        \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{dur_vs_trate}
+            \caption{Transcoding rate [fps] v/s video duration [min]}
+            \label{dur_vs_trate}
+        \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{bitrate_vs_trate}
+            \caption{Transcoding rate [fps] v/s video bitrate [Kbps]}
+            \label{bitrate_vs_trate}
+        \end{figure}
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{framerate_vs_trate}
+            \caption{Transcoding rate [fps] v/s video framerate [fps]}
+            \label{framerate_vs_trate}
+        \end{figure}
+    \section {Methodology for Regression based training}
+        \section {Evaluation of Software Packages}
+
+        \section {Regression Training using \textit{caret}}
+
+            \subsection{Data Splitting and Pre-processing}
+            \subsection{Tuning and building models}
+                \paragraph {Linear Regression Models}
+                \paragraph {Neural Network Models}
+                \paragraph {Nearest Neighbor Models}
+                \paragraph {Multivariate Adaptive Regression Splines}
+            \subsection {Resampling and Model Cross-Validation}
+            \subsection{Characterizing performance and variable importance}
+                \paragraph {Performance evaluation using $R^2$}
+                \paragraph {Performance Evaluation using RMSE}
+
+    % \section{}
+\chapter{Conclusions and Recommendations}
+    \section{Conclusions}
+    \section{Recommendations}
+
+% B I B L I O G R A P H Y
+% -----------------------
+
+% The following statement selects the style to use for references.  It controls the sort order of the entries in the bibliography and also the formatting for the in-text labels.
+\nocite{*}
+\bibliographystyle{IEEEtran}
+% This specifies the location of the file containing the bibliographic information.  
+% It assumes you're using BibTeX (if not, why not?).
+\cleardoublepage % This is needed if the book class is used, to place the anchor in the correct page,
+                 % because the bibliography will start on its own page.
+                 % Use \clearpage instead if the document class uses the "oneside" argument
+\phantomsection  % With hyperref package, enables hyperlinking from the table of contents to bibliography             
+% The following statement causes the title "References" to be used for the bibliography section:
+\renewcommand*{\bibname}{References}
+
+% Add the References to the Table of Contents
+\addcontentsline{toc}{chapter}{\textbf{References}}
+
+\bibliography{uw-ethesis}
+% Tip 5: You can create multiple .bib files to organize your references. 
+% Just list them all in the \bibliogaphy command, separated by commas (no spaces).
+
+% The following statement causes the specified references to be added to the bibliography% even if they were not 
+% cited in the text. The asterisk is a wildcard that causes all entries in the bibliographic database to be included (optional).
+\nocite{*}
+
+\end{document}

@@ -1,0 +1,39 @@
+\contentsline {chapter}{List of Tables}{iv}{section*.3}
+\contentsline {chapter}{List of Figures}{v}{section*.5}
+\contentsline {chapter}{Summary}{vi}{chapter*.8}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Objectives}{3}{chapter.2}
+\contentsline {chapter}{\numberline {3}Video Processing And Transport}{5}{chapter.3}
+\contentsline {section}{\numberline {3.1}Anatomy of a video}{5}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Pre-recorded Videos}{7}{subsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1.1}Container}{7}{subsubsection.3.1.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1.2}Video coding(encoding) format}{7}{subsubsection.3.1.1.2}
+\contentsline {subsection}{\numberline {3.1.2}Live/Streaming Videos}{8}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Video Processing}{8}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Encoding and Decoding}{9}{subsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Temporal Redundancy}{10}{subsubsection.3.2.1.1}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Psycho Visual Redundancy}{11}{subsubsection.3.2.1.2}
+\contentsline {subsubsection}{\numberline {3.2.1.3}Spatial Redundancy}{12}{subsubsection.3.2.1.3}
+\contentsline {subsubsection}{\numberline {3.2.1.4}Statistical Redundancy}{13}{subsubsection.3.2.1.4}
+\contentsline {subsubsection}{\numberline {3.2.1.5}Live video considerations}{13}{subsubsection.3.2.1.5}
+\contentsline {subsection}{\numberline {3.2.2}H.264/AVC encoder}{14}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Intra Prediction}{15}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Motion Compensated Prediction}{16}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Block Transform Coding}{16}{subsubsection.3.2.2.3}
+\contentsline {subsubsection}{\numberline {3.2.2.4}Entropy Coding Schemes}{16}{subsubsection.3.2.2.4}
+\contentsline {subsection}{\numberline {3.2.3}Transcoding}{16}{subsection.3.2.3}
+\contentsline {chapter}{\numberline {4}Distributed Video Coding}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Overview}{19}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Slepian-Wolf (SW) Theorem for Lossless Coding}{19}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Wyner-Ziv(WZ) Theory}{20}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}PRISM Encoder}{20}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}PRISM encoder performance}{21}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}DISCOVER Encoder}{21}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}DISCOVER Encoder Performance}{21}{subsection.4.3.1}
+\contentsline {chapter}{\numberline {5}Regression Analysis of Youtube Videos}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}Dataset Characteristics}{22}{section.5.1}
+\contentsline {chapter}{\numberline {6}Conclusions and Recommendations}{26}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{26}{section.6.1}
+\contentsline {section}{\numberline {6.2}Recommendations}{26}{section.6.2}
+\contentsline {chapter}{\textbf {References}}{27}{section*.27}
