@@ -1,1 +1,3 @@
 Work Report 400. This report needs to be compiled using pdflatex. run build.sh to build
+
+All the R code used to generate analytics on yout he youtube dataset and the regression modeeling is available here: https://github.com/prajnak/machine_learning_experiments
