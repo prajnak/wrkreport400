@@ -1,0 +1,22 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Matrix representation of a video and its component frames\relax }}{4}{figure.caption.9}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Location of pixel $I_2(0,2)$ in a video frame\relax }}{5}{figure.caption.10}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Structure of a video codec\relax }}{8}{figure.caption.12}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Digital video produced through compression techniques\relax }}{8}{figure.caption.13}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Demonstration of temporal redundancy\cite {Kundur}\relax }}{9}{figure.caption.14}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Subsampling chromaticity to achieve data reducton\cite {Choupani}\relax }}{9}{figure.caption.15}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Demonstration of spatial redundancy\cite {Kundur}\relax }}{10}{figure.caption.16}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Structure of H.264/AVC encoder\cite {Ostermann2004}\relax }}{13}{figure.caption.17}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Achievable rates of lossless coding by distributed coding of two statistically dependent random signals\cite {Dufaux2009}\relax }}{17}{figure.caption.18}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Architecture of PRISM coding\cite {Dufaux2009}\relax }}{18}{figure.caption.19}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram of videos by codec type in the youtube dataset\relax }}{20}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Jitter plots of framerates separated by codec type\relax }}{21}{figure.caption.21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Jitter plots of bitrates separated by codec type\relax }}{21}{figure.caption.22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Transcoding rate [fps] v/s video duration [min]\relax }}{22}{figure.caption.23}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Transcoding rate [fps] v/s video bitrate [Kbps]\relax }}{22}{figure.caption.24}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Transcoding rate [fps] v/s video framerate [fps]\relax }}{23}{figure.caption.25}
+\addvspace {10\p@ }

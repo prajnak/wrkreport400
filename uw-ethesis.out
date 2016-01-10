@@ -1,0 +1,31 @@
+\BOOKMARK [0][-]{section*.3}{List of Tables}{}% 1
+\BOOKMARK [0][-]{section*.5}{List of Figures}{}% 2
+\BOOKMARK [0][-]{chapter*.8}{Summary}{}% 3
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 4
+\BOOKMARK [1][-]{section.1.1}{Background}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Objectives}{}% 6
+\BOOKMARK [0][-]{chapter.3}{Video Processing And Transport}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Anatomy of a video}{chapter.3}% 8
+\BOOKMARK [2][-]{subsection.3.1.1}{Pre-recorded Videos}{section.3.1}% 9
+\BOOKMARK [2][-]{subsection.3.1.2}{Live/Streaming Videos}{section.3.1}% 10
+\BOOKMARK [1][-]{section.3.2}{Video Processing}{chapter.3}% 11
+\BOOKMARK [2][-]{subsection.3.2.1}{Encoding and Decoding}{section.3.2}% 12
+\BOOKMARK [2][-]{subsection.3.2.2}{H.264/AVC encoder}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.3}{Transcoding}{section.3.2}% 14
+\BOOKMARK [0][-]{chapter.4}{Distributed Video Coding}{}% 15
+\BOOKMARK [1][-]{section.4.1}{Overview}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.1.1}{Slepian-Wolf \(SW\) Theorem for Lossless Coding}{section.4.1}% 17
+\BOOKMARK [2][-]{subsection.4.1.2}{Wyner-Ziv\(WZ\) Theory}{section.4.1}% 18
+\BOOKMARK [1][-]{section.4.2}{PRISM Encoder}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.2.1}{PRISM encoder performance}{section.4.2}% 20
+\BOOKMARK [1][-]{section.4.3}{DISCOVER Encoder}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.3.1}{DISCOVER Encoder Performance}{section.4.3}% 22
+\BOOKMARK [0][-]{chapter.5}{Regression Analysis of Youtube Videos}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Dataset Characteristics}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{Methodology for Regression based training}{chapter.5}% 25
+\BOOKMARK [2][-]{subsection.5.2.1}{Evaluation of Software Packages}{section.5.2}% 26
+\BOOKMARK [2][-]{subsection.5.2.2}{Regression Training using caret}{section.5.2}% 27
+\BOOKMARK [0][-]{chapter.6}{Conclusions and Recommendations}{}% 28
+\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 29
+\BOOKMARK [1][-]{section.6.2}{Recommendations}{chapter.6}% 30
+\BOOKMARK [0][-]{section*.26}{References}{}% 31

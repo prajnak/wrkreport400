@@ -33,20 +33,20 @@
 \contentsline {subsection}{\numberline {4.3.1}DISCOVER Encoder Performance}{19}{subsection.4.3.1}
 \contentsline {chapter}{\numberline {5}Regression Analysis of Youtube Videos}{20}{chapter.5}
 \contentsline {section}{\numberline {5.1}Dataset Characteristics}{20}{section.5.1}
-\contentsline {section}{\numberline {5.2}Methodology for Regression based training}{22}{section.5.2}
-\contentsline {section}{\numberline {5.3}Evaluation of Software Packages}{22}{section.5.3}
-\contentsline {section}{\numberline {5.4}Regression Training using \textit {caret}}{22}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Data Splitting and Pre-processing}{22}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Tuning and building models}{22}{subsection.5.4.2}
-\contentsline {paragraph}{\numberline {5.4.2.0.1}Linear Regression Models}{22}{paragraph.5.4.2.0.1}
-\contentsline {paragraph}{\numberline {5.4.2.0.2}Neural Network Models}{22}{paragraph.5.4.2.0.2}
-\contentsline {paragraph}{\numberline {5.4.2.0.3}Nearest Neighbor Models}{22}{paragraph.5.4.2.0.3}
-\contentsline {paragraph}{\numberline {5.4.2.0.4}Multivariate Adaptive Regression Splines}{22}{paragraph.5.4.2.0.4}
-\contentsline {subsection}{\numberline {5.4.3}Resampling and Model Cross-Validation}{22}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Characterizing performance and variable importance}{22}{subsection.5.4.4}
-\contentsline {paragraph}{\numberline {5.4.4.0.1}Performance evaluation using $R^2$}{22}{paragraph.5.4.4.0.1}
-\contentsline {paragraph}{\numberline {5.4.4.0.2}Performance Evaluation using RMSE}{22}{paragraph.5.4.4.0.2}
-\contentsline {chapter}{\numberline {6}Conclusions and Recommendations}{24}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{24}{section.6.1}
-\contentsline {section}{\numberline {6.2}Recommendations}{24}{section.6.2}
-\contentsline {chapter}{\textbf {References}}{25}{section*.26}
+\contentsline {section}{\numberline {5.2}Methodology for Regression based training}{24}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Evaluation of Software Packages}{24}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Regression Training using \textit {caret}}{24}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Data Splitting and Pre-processing}{24}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Tuning and building models}{24}{subsubsection.5.2.2.2}
+\contentsline {paragraph}{\numberline {5.2.2.2.1}Linear Regression Models}{24}{paragraph.5.2.2.2.1}
+\contentsline {paragraph}{\numberline {5.2.2.2.2}Neural Network Models}{24}{paragraph.5.2.2.2.2}
+\contentsline {paragraph}{\numberline {5.2.2.2.3}Nearest Neighbor Models}{24}{paragraph.5.2.2.2.3}
+\contentsline {paragraph}{\numberline {5.2.2.2.4}Multivariate Adaptive Regression Splines}{24}{paragraph.5.2.2.2.4}
+\contentsline {subsubsection}{\numberline {5.2.2.3}Resampling and Model Cross-Validation}{24}{subsubsection.5.2.2.3}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Characterizing performance and variable importance}{24}{subsubsection.5.2.2.4}
+\contentsline {paragraph}{\numberline {5.2.2.4.1}Performance evaluation using $R^2$}{24}{paragraph.5.2.2.4.1}
+\contentsline {paragraph}{\numberline {5.2.2.4.2}Performance Evaluation using RMSE}{24}{paragraph.5.2.2.4.2}
+\contentsline {chapter}{\numberline {6}Conclusions and Recommendations}{25}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{25}{section.6.1}
+\contentsline {section}{\numberline {6.2}Recommendations}{25}{section.6.2}
+\contentsline {chapter}{\textbf {References}}{26}{section*.26}

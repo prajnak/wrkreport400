@@ -1,0 +1,13 @@
+possible topics:
+
+1 - evaluation of efficient video encoding techniques for low power video sensor applications for wireless networks
+	- solution 1: Distributed Video Coding codec performance 
+		- The basic of premise of DVC encoding schemes is to offload a lot of the computationally intensive processing that takes place in standard video encoding techniques such as H.264/AVC during the video encoding phase to the decoding phase.
+		
+		- This makes sense when one considers the applications for which the DVC encoding scheme was specifically designed. DVC is especially applicable for low power video sensor networks where there are tons of camera sensors continuously recording video, encoding it and transferring it over the network to a centralized server where multi-view coding is performed to gain a better understanding of the data collected by these low power video sensors. This offloading of computationally intensive encoding operations to the decoding operation is the defining characteristic of the distributed video encoding scheme.
+
+		- 
+
+	- solution 2: Machine Learning based video encoding parameter optimization for H.264 codec to work in such environments
+
+2 - 
