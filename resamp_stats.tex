@@ -1,0 +1,32 @@
+%latex.default(object = object[[1]], caption = nx[1], label = nx[1],     append = append, title = title, file = file, caption.lot = NULL,     caption.loc = caption.loc, ...)%
+\begin{table}[!tbp]
+\caption{RMSE\label{RMSE}} 
+\begin{center}
+\begin{tabular}{lrrrrrrr}
+\hline\hline
+\multicolumn{1}{l}{resamp}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+\hline
+knn&$9.110$&$11.040$&$12.010$&$12.280$&$13.500$&$17.210$&$0$\tabularnewline
+mars&$4.833$&$ 5.883$&$ 6.360$&$ 6.572$&$ 7.393$&$ 9.972$&$0$\tabularnewline
+nnet&$3.661$&$ 6.532$&$10.680$&$10.010$&$13.260$&$17.210$&$0$\tabularnewline
+avnnet&$4.177$&$ 6.298$&$ 7.465$&$ 8.060$&$ 9.353$&$13.460$&$0$\tabularnewline
+\hline
+\end{tabular}\end{center}
+
+\end{table}
+%latex.default(object = object[[i]], caption = nx[i], label = nx[i],     append = file != "", title = title, file = file, caption.lot = NULL,     caption.loc = caption.loc, ...)%
+\begin{table}[!tbp]
+\caption{Rsquared\label{Rsquared}} 
+\begin{center}
+\begin{tabular}{lrrrrrrr}
+\hline\hline
+\multicolumn{1}{l}{resamp}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+\hline
+knn&$0.2175$&$0.3784$&$0.4366$&$0.4321$&$0.4907$&$0.6384$&$0$\tabularnewline
+mars&$0.7477$&$0.8197$&$0.8435$&$0.8389$&$0.8585$&$0.8990$&$0$\tabularnewline
+nnet&$0.2102$&$0.3626$&$0.4736$&$0.5857$&$0.8351$&$0.9568$&$0$\tabularnewline
+avnnet&$0.2547$&$0.6865$&$0.8000$&$0.7541$&$0.8544$&$0.9396$&$0$\tabularnewline
+\hline
+\end{tabular}\end{center}
+
+\end{table}

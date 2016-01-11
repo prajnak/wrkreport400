@@ -70,7 +70,7 @@
 \usepackage{gensymb}
 \usepackage{wrapfig}
 \usepackage{subcaption}
-\usepackage{refcheck}
+% \usepackage{refcheck}
 % \usepackage{showframe}
 \usepackage[top=1in, bottom=1in, left=1.5in, right=1.5in]{geometry}
 \usepackage{minted}
@@ -78,6 +78,7 @@
 \usepackage[margin=10pt,font=small,labelfont=bf,
 labelsep=endash, justification=centering]{caption}
 \usepackage{booktabs}
+\usepackage{multicol}
 
 \usepackage[pagestyles]{titlesec}
 \setcounter{secnumdepth}{4}
@@ -88,20 +89,20 @@ labelsep=endash, justification=centering]{caption}
 \newcommand{\vq}{$'$}
 \newcommand*\ruleline[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{1ex}\raisebox{-.8ex}{#1}\hspace{1ex}\hrulefill}}}
 
-\titleformat{\chapter}[hang]{\LARGE \sc}{\thechapter\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\LARGE \sc}
+\titleformat{\chapter}[hang]{\LARGE \sc \filcenter}{\thechapter\vsp}{7pt}{\LARGE \sc}
 \titlespacing*{\chapter}{0pt}{0pt}{0pt}
 
-\titleformat{\section}[hang]{\Large \sc}{\thesection\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\Large \sc}
+\titleformat{\section}[hang]{\Large \sc \filcenter}{\thesection\vsp}{7pt}{\Large \sc}
 \titlespacing*{\section}{0pt}{0pt}{0pt}
 
-\titleformat{\subsection}[hang]{\large \sc \bfseries}{\thesubsection\vsp\textcolor{gray75}{$\vert$}\vsp}{7pt}{\bfseries \large \sc}
+\titleformat{\subsection}[hang]{\large \sc \bfseries \filcenter}{\thesubsection\vsp}{7pt}{\bfseries \large \sc}
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
 
-\titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc}{\textcolor{gray75}{$\vert\vert$}}{7pt}{\bfseries \sc}
+\titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc \filcenter}{}{0pt}{\bfseries \sc}
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
-\titleformat{\paragraph}[hang]{\normalsize \bfseries \sc}{\textcolor{gray75}{$\vert\vert$}}{7pt}{\bfseries \sc}
-\titlespacing*{\paragraph}{0pt}{0pt}{0pt}
+% \titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc \underline}{}{7pt}{\underline \bfseries \sc}
+% \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
 % \newcommand{\mychapter}[2]{
 %     \setcounter{chapter}{#1}
@@ -304,11 +305,11 @@ labelsep=endash, justification=centering]{caption}
 
     The standard video codec covered by this report is the ubiquitous H.264/HVC compression standard developed by the ITU-T Video Coding Experts Group (VCEG) together with the ISO/IEC JTC1 Moving Picture Experts Group (MPEG). It is one of the most widely used video standards with applications including Internet streaming, Blu-ray disks and HDTV broadcasts over satellite and cable networks. The advantages offered by this video codec include providing imperceptible quality loss at lower bitrates than other standards and perhaps, the most important one, its ability to integrate well with existing video encoding and transmission infrastructure across a wide range of applications. 
 
-    The report then presents an overview of the technologies behind the new video encoding technique known as Distributed Video Coding (DVC). The main advantages offered by video codecs that implement DVC include offloading encoding complexity to the decoder, which, for the purposes of this report happens on the centralized server. DVC is very flexible in that it allows user configurable distribution of coding complexity between the encoder and decoder based on application requirements. Two experimental video codecs implemented by researchers, namely the PRISM codec and DISCOVER codec are presented and their performance, characterized by the results of a few research papers, is analyzed based on the objectives defined for the low power video sensor. 
+    The report then presents an overview of the technologies behind the new video encoding technique known as Distributed Video Coding (DVC). The main advantages offered by video codecs that implement DVC include offloading encoding complexity to the decoder, which, for the purposes of this report happens on the centralized server. DVC is very flexible in that it allows user configurable distribution of coding complexity between the encoder and decoder based on application requirements. An experimental video codec implemented by researchers, namely the PRISM codec, is presented and its performance, characterized by the results of a few research papers, is analyzed based on the objectives defined for the low power video sensor. 
 
     The report then analyses a publicly available dataset of the transcoding performance of a few thousand youtube videos. This dataset includes characteristics such as input codec, frame-rate, size and output codec, frame-rate, bitrate and most importantly, memory and cpu time taken to transcode the input video to output video. This dataset is used to train two classes of statistical regression models, namely linear regression and non-linear regression models, to be able to predict the cpu time and memory required for transcoding. The videos in the dataset use 4 different codecs - flv, h264, mpeg4 and vp6. The transcoding was performed using the most widely used open source audio/video processing library, FFmpeg.
 
-    The linear regression models trained using the dataset include Partial Least Squares Regression (PLS), Elastic Nets (ENET), Multiple Linear Regression (LM) and Robust Linear Models (RLM). The second class of non-linear regression models covered include k-Nearest Neighbors (kNN), Neural Networks (NN), Model Averaged Neural Networks (avNNet), Multivariate Adaptive Regression Splines (MARS) and finally, Support Vector Machines (SVM). All of the analyses are implemented using the statistical programming language, R using the packages \textit{caret} and \textit{AppliedPredictiveModelling}. The results from all the models are evaluated using two metrics, namely $R^2$ and $\text{Root Mean Squared Error}$, which are the statistical performance metrics for regression models.
+    The non-linear regression models trained using the dataset include k-Nearest Neighbors (kNN), Neural Networks (NN), Model Averaged Neural Networks (avNNet) and Multivariate Adaptive Regression Splines (MARS). All of the analyses are implemented using the statistical programming language, R using the packages \textit{caret} and \textit{AppliedPredictiveModelling}. The results from all the models are evaluated using two metrics, namely $R^2$ and $\text{Root Mean Squared Error}$, which are the statistical performance metrics for regression models.
 
     It is to be noted that the transcoding performance in the youtube dataset was measured on a fairly standard server computer with a high amount of processing power. However, the rationale behind training multiple models using this dataset is to be able to predict transcoding times for standard codecs irrespective of the computational power of the machine on which the transcoding operation is being run. This was done since there was no way to measure the computational encoding performance on an actual low power video sensor.
 
@@ -539,7 +540,7 @@ labelsep=endash, justification=centering]{caption}
     \section{Overview}
         Distributed Video Coding (DVC) is ideally suitable to fulfill the above demand. DVC proposed a dramatic structural change to video coding by shifting the majority of complexity conventionally residing in the encoder towards the decoder by implementing distributed source coding concepts. The major task of exploiting the source redundancies to achieve the video compression is accordingly placed in the decoder. The DVC encoder thus performs a computationally very inexpensive operation enabling a significantly low cost implementation of the signal processor in DVC based video cameras\cite{Weerakkody2007}.
         
-        \subsection{Slepian-Wolf (SW) Theorem for Lossless Coding}
+        \subsection{Slepian-Wolf (SW) Theorem}
             \begin{figure}[!h]
                 \centering
                 \includegraphics[width=0.5\textwidth]{swtheory}
@@ -562,11 +563,449 @@ labelsep=endash, justification=centering]{caption}
         The lower part of the least significant bit planes is entropy coded with a (run, depth, path, last) 4-tuple alphabet. The upper part of the least significant bit planes is coded using a coset channel code. For this purpose, a BCH code is used, as it performs well even with small block-lengths. Conversely, the most significant bits are assumed to be inferred from the block predictor or Side Information (SI). In parallel, a 16-bit Cyclic Redundancy Check (CRC) is also computed. At the decoder, the syndrome bits are then used to correct predictors, which are generated using different motion vectors. The CRC is used to confirm whether the decoding is successful.
         \subsection{PRISM encoder performance}
 
-    \section{DISCOVER Encoder}
-        \subsection{DISCOVER Encoder Performance}
 
-\chapter{Regression Analysis of Youtube Videos}
+\chapter{Machine Learning based Regression Model Training}
     \section{Dataset Characteristics}
+        The dataset found at \cite{UCIM53:online} can be used to gain insight into characteristics of consumer videos found on UGC(Youtube). The features include bitrate, framerate, resolution, codec, number of i frames, number of p frames, number of b frames, size of i frames, size of p frames and size of b frames of the input video and the desired bitrate,framerate, resolution and codec of the output video which are given as a parameter to a transcoding service.
+
+        \begin{figure}[!h]
+            \centering
+            \includegraphics[width=\textwidth]{dur_vs_trate}
+            \caption{Transcoding rate [fps] v/s video duration [min]}
+            \label{dur_vs_trate}
+        \end{figure}
+
+        The second file of the dataset contains 20 columns(see column names for names) which include input and output video characteristics along with their transcoding time and memory resource requirements while transcoding videos to different but valid formats. The second dataset was collected based on experiments on an Intel i7-3720QM CPU through randomly picking two rows from the first dataset and using these as input and output parameters of a video transcoding application, ffmpeg.
+
+        Please refer to Appendix \ref{app:ytvideo} for a thorough visualization based characterization of this dataset. A through exploration of this dataset, including scatterplots using the R package \textit{AppliedPredictiveModelling} \cite{apppredic}, threw up no single parameter as being primarily responsible for dictating the transcoding time of a video. This pointed towards the need for a machine learning based approach that can run through multiple regression models while tuning parameters in fine and small amounts to provide the best fit possible. The sheer number of input parameters to tune and account for to be able to predict one final output variable, the transcoding time, also led to the choice of using machine learning algorithms for prediction purposes.
+
+    \section {Methodology for Regression based training}
+        The use of complex classification and regression models is becoming more and more commonplace in science, finance and a myriad of other domains. Regression is concerned with modeling the relationship between variables that is iteratively refined using a measure of error in the predictions made by the model. Regression methods are a workhorse of statistics and have been cooped into statistical machine learning. This may be confusing because one can use regression to refer to the class of problem and the class of algorithm. Really, regression is a process.
+
+        Mathematically, we can define the process of Regression modeling as follows. Suppose, we have an output $Y$ and a series of inputs or predictors (usually assumed to be independent variables). $$X_1, X_2, ...... X_n$$
+        Then, the goals of a regression model are multiple:
+        \begin{enumerate}
+            \item {examine the relationship between inputs and outputs -- Do they tend to vary together? What does the “structure” of the relationship look like? Which inputs are “important”?}
+            \item{ Given a new set of predictor values $X^{*}_1,...X^{*}_p$, what can be said about an unseen $Y^{*}$?}
+            \item { Regression tools often serve as a building block for more advanced methodologies - Smoothing by local polynomials, for example, involves fitting lots of regression models "locally", while iteratively fitting weighted regressions is at the heart of the standard computations for generalized linear models}
+        \end{enumerate}
+        Machine learning is a subfield of computer science that evolved from the study of pattern recognition and computational learning theory in artificial intelligence. Machine learning explores the study and construction of algorithms that can learn from and make predictions on data. Such algorithms operate by building a model from example inputs in order to make data-driven predictions or decisions, rather than following strictly static program instructions.
+
+        Regression analysis is widely used for prediction and forecasting, where its use has substantial overlap with the field of machine learning. Regression analysis is also used to understand which among the independent variables are related to the dependent variable, and to explore the forms of these relationships. In restricted circumstances, regression analysis can be used to infer causal relationships between the independent and dependent variables. However this can lead to illusions or false relationships, so caution is advisable; for example, correlation does not imply causation. In a narrower sense, regression may refer specifically to the estimation of continuous response variables, as opposed to the discrete response variables used in classification. The case of a continuous output variable may be more specifically referred to as metric regression to distinguish it from related problems.
+
+        
+        \subsection {Evaluation of Software Packages}
+            Two software library ecosystems were evaluated for the implementation of the regression based model training. It can be said that the ecosystem of packages and maturity is pretty good across all the platforms due to the explosion in popularity of machine learning techniques across all domains.
+            \subsubsection {Python - \textit{scikit-learn}}
+                The scikit-learn project provides an open source machine learning library for the Python programming language. The ambition of the project is to provide efficient and well-established machine learning tools within a programming environment that is accessible to non-machine learning experts and reusable in various scientific areas. The project is not a novel domain-specific language, but a library that provides machine learning idioms to a general purpose high-level language. Among other things, it includes classical learning algorithms, model evaluation and selection tools, as well as preprocessing procedures.
+
+                All objects within scikit-learn share a uniform common basic API consisting of three complementary interfaces: an estimator interface for building and fitting models, a predictor interface for making predictions and a transformer interface for converting data \cite{scikit-learn}.
+
+            \subsubsection {R}
+                The caret package, short for classification and regression training, was built with several goals in mind:
+                \begin{enumerate}
+                    \item{to eliminate syntactical differences between many of the functions for building and predicting models,}
+                    \item{to develop a set of semi-automated, reasonable approaches for optimizing the values of the tuning parameters for many of these models and}
+                    \item{create a package that can easily be extended to parallel processing systems.}
+                \end{enumerate}
+                The package contains functionality useful in the beginning stages of a project (e.g., data splitting and pre-processing), as well as unsupervised feature selection routines and methods to tune models using resampling that helps diagnose over-fitting. \textit{caret} depends on over 25 other packages, although many of these are listed as "suggested" packages which are not automatically loaded when caret is started. Packages are loaded individually when a model is trained or predicted.
+
+        \subsection {Regression Training using \textit{caret}}
+
+
+            \subsubsection{Data Splitting and Pre-processing}
+
+            \subsubsection{Tuning and building models}
+
+            \subsubsection {Resampling and Model Cross-Validation}
+            \clearpage
+
+        \subsection {Testing/Training Results}
+
+            \subsubsection {Neural Network Models}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{nnetresults}
+                    \caption{}
+                    \label{nnetresults}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{nnet_pred_obs}
+                    \caption{}
+                    \label{nnet_pred_obs}
+                \end{subfigure}
+                \end{figure*}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{avnnetresults}
+                    \caption{}
+                    \label{avnnetresults}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{avnnet_pred_obs}
+                    \caption{}
+                    \label{avnnet_pred_obs}
+                \end{subfigure}
+                \end{figure*}
+                \clearpage
+            \subsubsection {Nearest Neighbor Models}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=1.2\textwidth]{knnresults}
+                    \caption{}
+                    \label{knnresults}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.5\textwidth}
+                    \centering
+                    \includegraphics[width=1.2\textwidth]{knn_pred_obs}
+                    \caption{}
+                    \label{knn_pred_obs}
+                \end{subfigure}
+                \end{figure*}
+                \clearpage
+            \subsubsection {Multivariate Adaptive Regression Splines}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{marsresults}
+                    \caption{}
+                    \label{marsresults}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{mars_pred_obs}
+                    \caption{}
+                    \label{mars_pred_obs}
+                \end{subfigure}
+                \end{figure*}
+
+            \subsubsection {Resampling Statistics}
+                \begin{table}[!hp]
+                    \begin{center}
+                    \begin{tabular}{lrrrrrrr}
+                    \hline\hline
+                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+                    \hline
+                    knn&$9.110$&$11.040$&$12.010$&$12.280$&$13.500$&$17.210$&$0$\tabularnewline
+                    mars&$4.833$&$ 5.883$&$ 6.360$&$ 6.572$&$ 7.393$&$ 9.972$&$0$\tabularnewline
+                    nnet&$3.661$&$ 6.532$&$10.680$&$10.010$&$13.260$&$17.210$&$0$\tabularnewline
+                    avnnet&$4.177$&$ 6.298$&$ 7.465$&$ 8.060$&$ 9.353$&$13.460$&$0$\tabularnewline
+                    \hline
+                    \end{tabular}\end{center}
+                    \caption{RMSE\label{RMSE}} 
+                    \end{table}
+                    %latex.default(object = object[[i]], caption = nx[i], label = nx[i],     append = file != "", title = title, file = file, caption.lot = NULL,     caption.loc = caption.loc, ...)%
+                    \begin{table}[!hp]
+                    \begin{center}
+                    \begin{tabular}{lrrrrrrr}
+                    \hline\hline
+                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+                    \hline
+                    knn&$0.2175$&$0.3784$&$0.4366$&$0.4321$&$0.4907$&$0.6384$&$0$\tabularnewline
+                    mars&$0.7477$&$0.8197$&$0.8435$&$0.8389$&$0.8585$&$0.8990$&$0$\tabularnewline
+                    nnet&$0.2102$&$0.3626$&$0.4736$&$0.5857$&$0.8351$&$0.9568$&$0$\tabularnewline
+                    avnnet&$0.2547$&$0.6865$&$0.8000$&$0.7541$&$0.8544$&$0.9396$&$0$\tabularnewline
+                    \hline
+                    \end{tabular}
+                    \caption{$R^2$\label{Rsquared}} 
+                    \end{center}
+                    \end{table}
+                \clearpage
+            \subsubsection {Resampling Visualizations}
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=\textwidth]{resamp_bwplot}
+                    \caption{}
+                    \label{resamp_bwplot}
+                \end{figure}
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=\textwidth]{resamp_dotplot}
+                    \caption{}
+                    \label{resamp_dotplot}
+                \end{figure}
+                \begin{figure}[!h]
+                    \centering
+                    \includegraphics[width=\textwidth]{resamp_parallelplot}
+                    \caption{}
+                    \label{resamp_parallelplot}
+                \end{figure}
+                \clearpage
+
+        \subsection{Statistical Performance Measures}
+
+            \subsubsection {Performance evaluation}
+                \begin{table}[!hp]
+                    \begin{center}
+                    \begin{tabular}{lrr}
+                    \hline\hline
+                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
+                    \hline
+                    KNN&$10.59699280697047$&$0.584605561041047$\tabularnewline
+                    AvgNN&$ 6.95034584039986$&$0.843654549692612$\tabularnewline
+                    MARS&$ 6.29845637084742$&$0.850651878271596$\tabularnewline
+                    NN&$ 4.01016583316771$&$0.939547289034280$\tabularnewline
+                    \hline
+                    \end{tabular}
+                    \caption{Results of model performance on trained dataset}
+                    \label{test-res}
+                    \end{center}
+
+                \end{table}
+
+                \begin{table}[!hp]
+                    \begin{center}
+                    \begin{tabular}{lrr}
+                    \hline\hline
+                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
+                    \hline
+                    KNN&$12.44409507063652$&$0.403246960924018$\tabularnewline
+                    AvgNN&$ 8.21448372643189$&$0.764592868929468$\tabularnewline
+                    MARS&$ 6.86267500478760$&$0.818602643604257$\tabularnewline
+                    NN&$ 4.81454518621358$&$0.911059846936685$\tabularnewline
+                    \hline
+                    \end{tabular}
+                    \caption{Results of model performance on the complete dataset}
+                    \label{test-res}
+                    \end{center}
+                \end{table}
+                \clearpage
+            \subsubsection {Variable Importance}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{avnnetvarimp}
+                    \caption{}
+                    \label{avnnetvarimp}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{marsvarimp}
+                    \caption{}
+                    \label{marsvarimp}
+                \end{subfigure}
+                \end{figure*}
+                \begin{figure*}[!ht]
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{nnetvarimp}
+                    \caption{}
+                    \label{nnetvarimp}
+                \end{subfigure}%
+                    ~ 
+                \begin{subfigure}[t]{0.45\textwidth}
+                    \centering
+                    \includegraphics[width=\textwidth]{knnvarimp}
+                    \caption{}
+                    \label{knnvarimp}
+                \end{subfigure}
+                \end{figure*}
+                
+
+    % \section{}
+\chapter{Conclusions and Recommendations}
+    \section{Conclusions}
+    \section{Recommendations}
+
+\appendix
+\chapter{Appendix}
+    \section{Programming Code}
+        All the code used to generate the visualizations for this report can be found in the github repository located at \href{https://github.com/prajnak/machine_learning_experiments}{Github}.
+        \subsection {Model Training and Results Visualization - models.R}
+        \begin{multicols}{2}
+        \begin{minted}[autogobble, breaklines, fontsize=\tiny]{R}
+            # Multiple training routines EPage 82
+            save_plots = T
+            library(caret)
+            library(AppliedPredictiveModeling)
+            library(dplyr)
+            library(lattice)
+            set.seed(0)
+            #load('chemproc.dat')
+            library(doMC)
+            registerDoMC(cores = 4)
+
+            saveModel <- function(varN) {
+                varStr = deparse(substitute(varN))
+                save(varN, file=varStr)
+            }
+            tm_all = read.table('transcoding_mesurment.tsv', sep='\t', header=TRUE)
+            # data(ChemicalManufacturingProcess)
+            transc_meas = sample_frac(tm_all, 0.05)
+            transc_meas\$icodec = as.integer(transc_meas\$codec)
+            transc_meas\$ocodec = as.integer(transc_meas\$o_codec)
+            transc_meas\$utime = transc_meas\$frames/(transc_meas\$utime)
+            predArray = array(c(4:7, 11, 23:24))
+            processPredictors = transc_meas[, predArray]
+            yield = transc_meas[, 22]
+            ## read all data without sampling
+            tm_all\$icodec = as.integer(tm_all\$codec)
+            tm_all\$ocodec = as.integer(tm_all\$o_codec)
+            tm_all\$utime = tm_all\$frames/(tm_all\$utime)
+            pp_all = tm_all[, predArray]
+            yield_all = tm_all[, 22]
+            # Look for any features with no variance:
+            zero_cols = nearZeroVar( processPredictors )
+            print( sprintf("Found %d zero variance columns from %d",length(zero_cols), dim(processPredictors)[2] ) )
+            processPredictors = processPredictors[,-zero_cols] # drop these zero variance columns 
+            pp_all = pp_all[, -zero_cols]
+            # Split this data into training and testing sets:
+            #
+            training = createDataPartition( yield, p=0.8 )
+            processPredictors_training = processPredictors[training\$Resample1,]
+            yield_training = yield[training\$Resample1]
+            processPredictors_testing = processPredictors[-training\$Resample1,]
+            yield_testing = yield[-training\$Resample1]
+            # Build various nonlinear models and then compare performance:
+            preProc_Arguments = c("center","scale")
+            fitControl = trainControl(method = "repeatedcv", #10-fold cross validation
+                                     number=10,repeats = 10, returnResamp = "all")
+            # A K-NN model:
+            # 
+            set.seed(10)
+            knnModel = train(x=processPredictors_training, y=yield_training, method="knn", preProc=preProc_Arguments, tuneLength=40, trControl = fitControl)
+            saveModel(knnModel)
+
+            # predict on training/testing sets
+            knnPred = predict(knnModel, newdata=processPredictors_training)
+            knnPR = postResample(pred=knnPred, obs=yield_training)
+            rmses_training = c(knnPR[1])
+            r2s_training = c(knnPR[2])
+            methods = c("KNN")
+            ## try to predict all of the dataset now since our sampled data was only 5%
+            knnPred_all = predict(knnModel, newdata=pp_all)
+            knnPR_all = postResample(pred=knnPred_all, obs = yield_all)
+            rmses_testing = c(knnPR_all[1])
+            r2s_testing = c(knnPR_all[2])
+
+            knnPredVals = extractPrediction(list(knnModel), testX=processPredictors_testing, testY=yield_testing, unkX=pp_all)
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/knn_pred_obs.png", res=100)
+            print(plotObsVsPred(knnPredVals))
+            dev.off() 
+            ggplot(knnModel, knnModel\$metric[1]) +ggtitle(" Performance of k-nearest neighbors model")
+            ggsave("../wrkreport/images/knnresults.png", width=8, height=5, units="in", dpi=100)
+
+            # A Neural Network model:
+            #
+            nnGrid = expand.grid( .decay=c(0,0.01,0.1), .size=1:10, .bag=FALSE )
+            set.seed(0)
+            nnetModel = train(x=processPredictors_training, y=yield_training, method="nnet", trControl = fitControl, preProc=preProc_Arguments, linout=TRUE,trace=FALSE,MaxNWts=10 * (ncol(processPredictors_training)+1) + 10 + 1, maxit=500)
+            saveModel(nnetModel)
+
+            nnetPred = predict(nnetModel, newdata=processPredictors_training)
+            nnetPR = postResample(pred=nnetPred, obs=yield_training)
+            rmses_training = c(rmses_training,nnetPR[1])
+            r2s_training = c(r2s_training,nnetPR[2])
+            methods = c(methods,"NN")
+            ## try to predict all of the dataset now since our sampled data was only 5%
+            nnetPred_all = predict(nnetModel, newdata=pp_all)
+            nnetPR_all = postResample(pred=nnetPred_all, obs = yield_all)
+            rmses_testing = c(rmses_testing, nnetPR_all[1])
+            r2s_testing = c(r2s_testing, nnetPR_all[2])
+
+            nnetPredVals = extractPrediction(list(nnetModel), testX=processPredictors_testing, testY=yield_testing, unkX=pp_all)
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/nnet_pred_obs.png", res=100)
+            print(plotObsVsPred(nnetPredVals))
+            dev.off()
+            quartz()
+            ggplot(nnetModel, metric="RMSE") + ggtitle("Performance of neural network model")
+            ggsave("../wrkreport/images/nnetresults.png", width=8, height=5, units="in", dpi=100)
+
+            # Averaged Neural Network models:
+            #
+            set.seed(45)
+            avNNetModel = train(x=processPredictors_training, y=yield_training, trControl = fitControl, method="avNNet", preProc=preProc_Arguments, linout=TRUE,trace=FALSE,MaxNWts=10 * (ncol(processPredictors_training)+1) + 10 + 1, maxit=500)
+            saveModel(avNNetModel)
+            avNNetPred = predict(avNNetModel, newdata=processPredictors_training)
+            avNNetPR = postResample(pred=avNNetPred, obs=yield_training)
+            rmses_training = c(rmses_training,avNNetPR[1])
+            r2s_training = c(r2s_training,avNNetPR[2])
+            methods = c(methods,"AvgNN")
+            ## try to predict all of the dataset now since our sampled data was only 5%
+            avnnetPred_all = predict(avNNetModel, newdata=pp_all)
+            avnnetPR_all = postResample(pred=avnnetPred_all, obs = yield_all)
+            rmses_testing = c(rmses_testing, avnnetPR_all[1])
+            r2s_testing = c(r2s_testing, avnnetPR_all[2])
+            avnnetPredVals = extractPrediction(list(avNNetModel), testX=processPredictors_testing, testY=yield_testing, unkX=pp_all)
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/avnnet_pred_obs.png", res=100)
+            print(plotObsVsPred(avnnetPredVals))
+            dev.off()
+            ggplot(avNNetModel, metric="RMSE") + ggtitle("Performance of average neural network model")        
+            ggsave("../wrkreport/images/avnnetresults.png", width=8, height=5, units="in", dpi=100)
+
+            ## MARS model:
+            marsGrid = expand.grid(.degree=1:2, .nprune=2:38)
+            set.seed(0)
+            marsModel = train(x=processPredictors_training, y=yield_training, method="earth",  trControl = fitControl, preProc=preProc_Arguments, tuneGrid=marsGrid)
+            saveModel(marsModel) 
+            marsPred = predict(marsModel, newdata=processPredictors_training)
+            marsPR = postResample(pred=marsPred, obs=yield_training)
+            rmses_training = c(rmses_training,marsPR[1])
+            r2s_training = c(r2s_training,marsPR[2])
+            methods = c(methods,"MARS")
+            ## try to predict all of the dataset now since our sampled data was only 5%
+            marsPred_all = predict(marsModel, newdata=pp_all)
+            marsPR_all = postResample(pred=marsPred_all, obs = yield_all)
+            rmses_testing = c(rmses_testing, marsPR_all[1])
+            r2s_testing = c(r2s_testing, marsPR_all[2])
+            marsPredVals = extractPrediction(list(marsModel), testX=processPredictors_testing, testY=yield_testing, unkX=pp_all)
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/mars_pred_obs.png", res=100)
+            plotObsVsPred(marsPredVals)
+            dev.off()
+            quartz()
+            ggplot(marsModel, metric="RMSE") + ggtitle("Performance of MARS model")        
+            ggsave("../wrkreport/images/marsresults.png", width=8, height=5, units="in", dpi=100)
+
+            # Lets see what variables are most important in the MARS model: 
+            ggplot(varImp(nnetModel), top=5);
+            ggsave("../wrkreport/images/nnetvarimp.png", width=5, height=5, units="cm", dpi=100)
+            ggplot(varImp(knnModel), top=5);
+            ggsave("../wrkreport/images/knnvarimp.png", width=5, height=5, units="cm", dpi=100)
+            ggplot(varImp(avNNetModel), top=5);
+            ggsave("../wrkreport/images/avnnetvarimp.png", width=5, height=5, units="cm", dpi=100)
+            ggplot(varImp(marsModel), top=5);
+            ggsave("../wrkreport/images/marsvarimp.png", width=5, height=5, units="cm", dpi=100)
+            # Package the results up:
+            res_training = data.frame( rmse=rmses_training, r2=r2s_training )
+            rownames(res_training) = methods
+            training_order = order( -res_training\$rmse )
+            res_training = res_training[ training_order, ]
+            library(Hmisc)
+            latex(res_training, file="../wrkreport/train_results.tex")
+            res_testing = data.frame( rmse=rmses_testing, r2=r2s_testing )
+            rownames(res_testing) = methods
+            res_testing = res_testing[ training_order, ]
+            latex(res_testing, file="../wrkreport/testing_results.tex")
+            # EPage 82 
+            resamp = resamples( list(knn=knnModel,mars=marsModel,nnet=nnetModel,avnnet=avNNetModel) )
+            resamp_sum = summary(resamp)
+            latex(resamp_sum\$statistics, file = "../wrkreport/resamp_stats.tex")
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/resamp_bwplot.png", res=100)
+            bwplot(resamp, scales="free")
+            dev.off()
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/resamp_dotplot.png", res=100)
+            dotplot(resamp, scales="free")
+            dev.off()
+            trellis.device(device="png", width=8, height=5, units="in", filename="../wrkreport/images/resamp_parallelplot.png", res=100)
+            parallelplot(resamp, metric="RMSE")
+            dev.off()
+            print( summary(diff(resamp)) 
+            save(file="chemproc.dat", list=ls())
+        \end{minted}
+        \end{multicols}
+        \clearpage
+    \section {Youtube Video CHaracteristics}
+        \label{app:ytvideo}
         \begin{figure}[!h]
             \centering
             \includegraphics[width=\textwidth]{codec_hist}
@@ -587,12 +1026,6 @@ labelsep=endash, justification=centering]{caption}
         \end{figure}
         \begin{figure}[!h]
             \centering
-            \includegraphics[width=\textwidth]{dur_vs_trate}
-            \caption{Transcoding rate [fps] v/s video duration [min]}
-            \label{dur_vs_trate}
-        \end{figure}
-        \begin{figure}[!h]
-            \centering
             \includegraphics[width=\textwidth]{bitrate_vs_trate}
             \caption{Transcoding rate [fps] v/s video bitrate [Kbps]}
             \label{bitrate_vs_trate}
@@ -603,40 +1036,12 @@ labelsep=endash, justification=centering]{caption}
             \caption{Transcoding rate [fps] v/s video framerate [fps]}
             \label{framerate_vs_trate}
         \end{figure}
-    \clearpage
-
-    \section {Methodology for Regression based training}
-
-        \subsection {Evaluation of Software Packages}
-
-        \subsection {Regression Training using \textit{caret}}
-
-            \subsubsection{Data Splitting and Pre-processing}
-
-            \subsubsection{Tuning and building models}
-
-                \paragraph {Linear Regression Models}
-                \paragraph {Neural Network Models}
-                \paragraph {Nearest Neighbor Models}
-                \paragraph {Multivariate Adaptive Regression Splines}
-
-            \subsubsection {Resampling and Model Cross-Validation}
-
-            \subsubsection{Characterizing performance and variable importance}
-
-                \paragraph {Performance evaluation using $R^2$}
-                \paragraph {Performance Evaluation using RMSE}
-
-    % \section{}
-\chapter{Conclusions and Recommendations}
-    \section{Conclusions}
-    \section{Recommendations}
 
 % B I B L I O G R A P H Y
 % -----------------------
 
 % The following statement selects the style to use for references.  It controls the sort order of the entries in the bibliography and also the formatting for the in-text labels.
-\nocite{*}
+% \nocite{*}
 \bibliographystyle{IEEEtran}
 % This specifies the location of the file containing the bibliographic information.  
 % It assumes you're using BibTeX (if not, why not?).
@@ -656,6 +1061,6 @@ labelsep=endash, justification=centering]{caption}
 
 % The following statement causes the specified references to be added to the bibliography% even if they were not 
 % cited in the text. The asterisk is a wildcard that causes all entries in the bibliographic database to be included (optional).
-\nocite{*}
+% \nocite{*}
 
 \end{document}
