@@ -1,58 +1,59 @@
-\contentsline {chapter}{List of Tables}{iv}{section*.3}
-\contentsline {chapter}{List of Figures}{v}{section*.5}
-\contentsline {chapter}{Summary}{vi}{chapter*.8}
+\contentsline {chapter}{List of Tables}{v}{section*.3}
+\contentsline {chapter}{List of Figures}{vi}{section*.5}
+\contentsline {chapter}{Summary}{viii}{chapter*.8}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
-\contentsline {chapter}{\numberline {2}Objectives}{3}{chapter.2}
-\contentsline {chapter}{\numberline {3}Video Processing And Transport}{4}{chapter.3}
-\contentsline {section}{\numberline {3.1}Anatomy of a video}{4}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Pre-recorded Videos}{5}{subsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.1.1}Container}{6}{subsubsection.3.1.1.1}
-\contentsline {subsubsection}{\numberline {3.1.1.2}Video coding(encoding) format}{6}{subsubsection.3.1.1.2}
-\contentsline {subsection}{\numberline {3.1.2}Live/Streaming Videos}{6}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Video Processing}{7}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Encoding and Decoding}{7}{subsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.1.1}Temporal Redundancy}{8}{subsubsection.3.2.1.1}
-\contentsline {subsubsection}{\numberline {3.2.1.2}Psycho Visual Redundancy}{9}{subsubsection.3.2.1.2}
-\contentsline {subsubsection}{\numberline {3.2.1.3}Spatial Redundancy}{10}{subsubsection.3.2.1.3}
-\contentsline {subsubsection}{\numberline {3.2.1.4}Statistical Redundancy}{11}{subsubsection.3.2.1.4}
-\contentsline {subsubsection}{\numberline {3.2.1.5}Live video considerations}{11}{subsubsection.3.2.1.5}
-\contentsline {subsection}{\numberline {3.2.2}H.264/AVC encoder}{12}{subsection.3.2.2}
-\contentsline {subsubsection}{\numberline {3.2.2.1}Intra Prediction}{13}{subsubsection.3.2.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2.2}Motion Compensated Prediction}{14}{subsubsection.3.2.2.2}
-\contentsline {subsubsection}{\numberline {3.2.2.3}Block Transform Coding}{14}{subsubsection.3.2.2.3}
-\contentsline {subsubsection}{\numberline {3.2.2.4}Entropy Coding Schemes}{14}{subsubsection.3.2.2.4}
-\contentsline {subsection}{\numberline {3.2.3}Transcoding}{14}{subsection.3.2.3}
-\contentsline {chapter}{\numberline {4}Distributed Video Coding}{17}{chapter.4}
-\contentsline {section}{\numberline {4.1}Overview}{17}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Slepian-Wolf (SW) Theorem}{17}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Wyner-Ziv(WZ) Theory}{18}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}PRISM Encoder}{18}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}PRISM encoder performance}{19}{subsection.4.2.1}
-\contentsline {chapter}{\numberline {5}Machine Learning based Regression Model Training}{20}{chapter.5}
-\contentsline {section}{\numberline {5.1}Dataset Characteristics}{20}{section.5.1}
-\contentsline {section}{\numberline {5.2}Methodology for Regression based training}{21}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Evaluation of Software Packages}{22}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Python - \textit {scikit-learn}}{23}{subsubsection.5.2.1.1}
-\contentsline {subsubsection}{\numberline {5.2.1.2}R}{23}{subsubsection.5.2.1.2}
-\contentsline {subsection}{\numberline {5.2.2}Regression Training using \textit {caret}}{24}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Data Splitting and Pre-processing}{24}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Tuning and building models}{24}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Resampling and Model Cross-Validation}{24}{subsubsection.5.2.2.3}
-\contentsline {subsection}{\numberline {5.2.3}Testing/Training Results}{25}{subsection.5.2.3}
-\contentsline {subsubsection}{\numberline {5.2.3.1}Neural Network Models}{25}{subsubsection.5.2.3.1}
-\contentsline {subsubsection}{\numberline {5.2.3.2}Nearest Neighbor Models}{26}{subsubsection.5.2.3.2}
-\contentsline {subsubsection}{\numberline {5.2.3.3}Multivariate Adaptive Regression Splines}{27}{subsubsection.5.2.3.3}
-\contentsline {subsubsection}{\numberline {5.2.3.4}Resampling Statistics}{27}{subsubsection.5.2.3.4}
-\contentsline {subsubsection}{\numberline {5.2.3.5}Resampling Visualizations}{28}{subsubsection.5.2.3.5}
-\contentsline {subsection}{\numberline {5.2.4}Statistical Performance Measures}{30}{subsection.5.2.4}
-\contentsline {subsubsection}{\numberline {5.2.4.1}Performance evaluation}{30}{subsubsection.5.2.4.1}
-\contentsline {subsubsection}{\numberline {5.2.4.2}Variable Importance}{31}{subsubsection.5.2.4.2}
-\contentsline {chapter}{\numberline {6}Conclusions and Recommendations}{32}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{32}{section.6.1}
-\contentsline {section}{\numberline {6.2}Recommendations}{32}{section.6.2}
-\contentsline {chapter}{\numberline {A}Appendix}{33}{appendix.A}
-\contentsline {section}{\numberline {A.1}Programming Code}{33}{section.A.1}
-\contentsline {subsection}{\numberline {A.1.1}Model Training and Results Visualization - models.R}{33}{subsection.A.1.1}
-\contentsline {section}{\numberline {A.2}Youtube Video CHaracteristics}{36}{section.A.2}
-\contentsline {chapter}{\textbf {References}}{39}{section*.39}
+\contentsline {chapter}{\numberline {2}Video Processing And Transport}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Anatomy of a video}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Pre-recorded Videos}{4}{subsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.1}Container}{5}{subsubsection.2.1.1.1}
+\contentsline {subsubsection}{\numberline {2.1.1.2}Video coding(encoding) format}{5}{subsubsection.2.1.1.2}
+\contentsline {subsection}{\numberline {2.1.2}Live/Streaming Videos}{5}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Video Processing}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Encoding and Decoding}{6}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}Temporal Redundancy}{7}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}Psycho Visual Redundancy}{8}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}Spatial Redundancy}{9}{subsubsection.2.2.1.3}
+\contentsline {subsubsection}{\numberline {2.2.1.4}Statistical Redundancy}{10}{subsubsection.2.2.1.4}
+\contentsline {subsubsection}{\numberline {2.2.1.5}Live video considerations}{10}{subsubsection.2.2.1.5}
+\contentsline {subsection}{\numberline {2.2.2}H.264/AVC encoder}{11}{subsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Intra Prediction}{12}{subsubsection.2.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2.2}Motion Compensated Prediction}{13}{subsubsection.2.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.2.3}Block Transform Coding}{13}{subsubsection.2.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.2.4}Entropy Coding Schemes}{13}{subsubsection.2.2.2.4}
+\contentsline {subsection}{\numberline {2.2.3}Transcoding}{13}{subsection.2.2.3}
+\contentsline {chapter}{\numberline {3}Distributed Video Coding}{16}{chapter.3}
+\contentsline {section}{\numberline {3.1}Overview}{16}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Slepian-Wolf (SW) Theorem}{16}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Wyner-Ziv(WZ) Theory}{17}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}PRISM Encoder}{17}{section.3.2}
+\contentsline {chapter}{\numberline {4}Machine Learning based Regression Model Training}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Dataset Characteristics}{19}{section.4.1}
+\contentsline {section}{\numberline {4.2}Methodology for Regression based training}{20}{section.4.2}
+\contentsline {section}{\numberline {4.3}Evaluation of Software Packages}{22}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Python - \textit {scikit-learn}}{22}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}R - \textit {caret}}{22}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Regression Training using \textit {caret}}{23}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Data pre-processing and Splitting}{24}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Tuning and building models}{25}{subsection.4.4.2}
+\contentsline {paragraph}{\numberline {4.4.2.0.1}k-Nearest Neightbors}{26}{paragraph.4.4.2.0.1}
+\contentsline {paragraph}{\numberline {4.4.2.0.2}Neural Networks}{26}{paragraph.4.4.2.0.2}
+\contentsline {paragraph}{\numberline {4.4.2.0.3}Multiple Adaptive Regressive Splines (MARS)}{27}{paragraph.4.4.2.0.3}
+\contentsline {subsection}{\numberline {4.4.3}Resampling and Model Cross-Validation}{27}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Testing/Training Results}{29}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Neural Network Models}{29}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Nearest Neighbor Models}{30}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Multivariate Adaptive Regression Splines}{30}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Resampling Statistics}{31}{subsection.4.5.4}
+\contentsline {subsection}{\numberline {4.5.5}Resampling Visualizations}{31}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}Statistical Performance Measures}{33}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Performance evaluation}{33}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Variable Importance}{35}{subsection.4.6.2}
+\contentsline {chapter}{\numberline {5}Conclusions and Recommendations}{36}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{36}{section.5.1}
+\contentsline {section}{\numberline {5.2}Recommendations}{36}{section.5.2}
+\contentsline {chapter}{\numberline {A}Appendix}{37}{appendix.A}
+\contentsline {section}{\numberline {A.1}Programming Code}{37}{section.A.1}
+\contentsline {subsection}{\numberline {A.1.1}Model Training and Results Visualization - models.R}{37}{subsection.A.1.1}
+\contentsline {section}{\numberline {A.2}Youtube Video Dataset Characteristics}{40}{section.A.2}
+\contentsline {chapter}{\textbf {References}}{43}{section*.41}

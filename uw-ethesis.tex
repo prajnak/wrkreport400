@@ -101,8 +101,11 @@ labelsep=endash, justification=centering]{caption}
 \titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc \filcenter}{}{0pt}{\bfseries \sc}
 \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
 
-% \titleformat{\subsubsection}[hang]{\normalsize \bfseries \sc \underline}{}{7pt}{\underline \bfseries \sc}
-% \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+\titleformat{\paragraph}[hang]{\normalsize \sc \filcenter}{}{0pt}{\sc}
+\titlespacing*{\paragraph}{0pt}{0pt}{0pt}
+
+\titleformat{\subparagraph}[hang]{\small \sc \filcenter}{}{0pt}{\sc}
+\titlespacing*{\subparagraph}{0pt}{0pt}{0pt}
 
 % \newcommand{\mychapter}[2]{
 %     \setcounter{chapter}{#1}
@@ -313,7 +316,7 @@ labelsep=endash, justification=centering]{caption}
 
     It is to be noted that the transcoding performance in the youtube dataset was measured on a fairly standard server computer with a high amount of processing power. However, the rationale behind training multiple models using this dataset is to be able to predict transcoding times for standard codecs irrespective of the computational power of the machine on which the transcoding operation is being run. This was done since there was no way to measure the computational encoding performance on an actual low power video sensor.
 
-    In conclusion, this report agrees on the advantages offered by the DVC based codecs and recommends anyone interested in such application to research them and try to build new products based on these codecs to become future proof.
+    In conclusion, this report provides a trained neural network model for interested parties to use and test on their own datasets to be able to gain predictions tailored to the hardware being used to implement their low power video sensor networks. It also recommends that the model be re-trained using a bigger portion of the youtube dataset. This wasn't done on the first try because of the lack of computational power required to train these datasets.
 \cleardoublepage
 % Change page numbering back to Arabic numerals
 \pagenumbering{arabic}
@@ -326,19 +329,13 @@ labelsep=endash, justification=centering]{caption}
         A broadband network of wireless video sensors is subjected to three principal constraints:
         \begin{enumerate}
             \item {Limited processing capabilities and diverse display resolutions due in part to inexpensive device designs and limited battery power. These call for lightweight signal processing and compression algorithms at the individual sensor nodes and an architecture that can adapt to the differing processing capabilities of the encoding and decoding nodes.}
-            \item {Limited power/energy budget requiring careful manage- ment for maximizing network lifetime, the quality of the acquired data, and the accuracy of the decisions. Communication is often the dominant power-consuming activity. Power management requires efficient compression algorithms that maximize the power utilization per bit communicated and controlled dormancy cycles in inter-sensor communication that preclude frequent intersensor communication. This motivates the need for distributed coding and processing.}
+            \item {Limited power/energy budget requiring careful management for maximizing network lifetime, the quality of the acquired data, and the accuracy of the decisions. Communication is often the dominant power-consuming activity. Power management requires efficient compression algorithms that maximize the power utilization per bit communicated and controlled dormancy cycles in inter-sensor communication that preclude frequent intersensor communication. This motivates the need for distributed coding and processing.}
             \item {Information loss that is endemic to the harsh, loss-prone, wireless communication environment. This calls for robust coding algorithms, communication and networking protocols, and architectures that are immune to single points of failure. It is important to proactively build in robustness considerations into the architectural foundation rather than as after-thought bandage fixes.}
         \end{enumerate}
 
         The technologies that can make this vision a reality are within the reach of the general consumer and before them, entrepreneurs and electronics enthusiasts who would like to drive this revolution. Motivated by the enormous impact these technologies could potentially have, a survey of the general state of video encoding technologies revealed a growing interest among the Research and Development community in the field of Distributed Video Coding. 
 
-        With the above constraints, the traditional views of video coding and transmission as being confined to a “downlink” scenario (such as television broadcast or download from a video server) need to be relaxed. In the prevalent video coding architectures such as MPEG-x and H.26x, video encoding is the primary computationally intensive task with the complexity dominated by the motion-search operation. Conventional video decoding, on the other hand, has significantly lower complexity. This skewed, somewhat rigid, complexity compartmentalization conflicts with the heterogeneous processing capability requirements of video sensor networks where the encoding units might be able to do only “lightweight” processing but the relay or decoding units might be more capable. The prevalent video coding architectures are also built upon the principle of (deterministic) predictive coding from which they derive their compression efficiency. 
-
-        
-
-\chapter{Objectives}
-    \label{chap:objs}
-    
+        With the above constraints, the traditional views of video coding and transmission as being confined to a downlink scenario (such as television broadcast or download from a video server) need to be relaxed. In the prevalent video coding architectures such as MPEG-x and H.26x, video encoding is the primary computationally intensive task with the complexity dominated by the motion-search operation. Conventional video decoding, on the other hand, has significantly lower complexity. This skewed, somewhat rigid, complexity compartmentalization conflicts with the heterogeneous processing capability requirements of video sensor networks where the encoding units might be able to do only “lightweight” processing but the relay or decoding units might be more capable. The prevalent video coding architectures are also built upon the principle of (deterministic) predictive coding from which they derive their compression efficiency. 
 
 \chapter{Video Processing And Transport}
     
@@ -394,7 +391,7 @@ labelsep=endash, justification=centering]{caption}
         \subsection{Live/Streaming Videos}
             Streamable videos are defined as multimedia that is constantly received by and presented to an end user while being delivered by the provider. Streaming refers tot he delivery method of the video, rather than the video itself, and is an alternative to downloading a full video file. This report deals specifically with live streaming videos, which involves a source media type, a screen recorder in this case, an encoder to digitize the content, and a transport medium, usually one of HTTP, RTSP or RTP. 
 
-            The main difference between downloadable and streamable videos is speed with which the end user may start watching the video. In case of downloadable videos (files), the user has to wait till the entire file has downloaded to be able to start playing the video. Streamable videos, however, make use of video codecs that are tailored to give the option of beginning playback from any position. They can make this happen by using multiple frame types, frame prediction methods. One frame type in particular, known as a keyframe, enables this resume capacility of video from any position because of its decoupled nature from preceding and succeeding frames. Keyframes are implemented differently by video codecs but their essential function stays the same across all codecs. H.264, has a structure that enables interoperability during the video decode process with older video standards. The operational specifics of H.264 are explained in detail in Section \ref{sub:H.264}.
+            The main difference between downloadable and streamable videos is speed with which the end user may start watching the video. In case of downloadable videos (files), the user has to wait till the entire file has downloaded to be able to start playing the video. Streamable videos, however, make use of video codecs that are tailored to give the option of beginning playback from any position. They can make this happen by using multiple frame types, frame prediction methods. One frame type in particular, known as a keyframe, enables this resume capability of video from any position because of its decoupled nature from preceding and succeeding frames. Keyframes are implemented differently by video codecs but their essential function stays the same across all codecs. H.264, has a structure that enables interoperability during the video decode process with older video standards. The operational specifics of H.264 are explained in detail in Section \ref{sub:H.264}.
 
     \section{Video Processing}
         Video processing consists of three main processes - Encoding, Decoding and Transcoding
@@ -422,7 +419,7 @@ labelsep=endash, justification=centering]{caption}
             %     \item {
             \subsubsection{Temporal Redundancy} % (fold)
             \label{sub:temporal_redundancy}
-                Temporal Redundancy: Since the elapsed time between two consecutive frames is generally very short, consecutive frames tend to be very similar in contant and thus, contain a lot of data redundancy. The differences between consecutive frames may be expressed by considering the displacements of objects in the frames and encoding this motion$'$s vectors and differences. 
+                Temporal Redundancy: Since the elapsed time between two consecutive frames is generally very short, consecutive frames tend to be very similar in content and thus, contain a lot of data redundancy. The differences between consecutive frames may be expressed by considering the displacements of objects in the frames and encoding this motion$'$s vectors and differences. 
                 \begin{figure}[!h]
                     \centering
                     \includegraphics[width=0.8\textwidth]{tempredun}
@@ -434,7 +431,7 @@ labelsep=endash, justification=centering]{caption}
 
             \subsubsection{Psycho Visual Redundancy} % (fold)
                 \label{sub:psv_redundancy}  
-                Psycho Visual Redundancy: Since the target audience for 99.99\% of all videos is a human recipient, the capabilities of the human visual system (HVS) need to be taken into acccount before encoding. The HVS is very sensitive to changes in luminance aka intensity compared to changed in chromaticity (color). In fact, the HVS is extremely good at inderring color details based on the intensity levels in an image. This knowledge maybe used to selectively subsample the color data in a frame while keeping the intensity data unchanged. 
+                Psycho Visual Redundancy: Since the target audience for 99.99\% of all videos is a human recipient, the capabilities of the human visual system (HVS) need to be taken into account before encoding. The HVS is very sensitive to changes in luminance aka intensity compared to changed in chromaticity (color). In fact, the HVS is extremely good at inderring color details based on the intensity levels in an image. This knowledge maybe used to selectively subsample the color data in a frame while keeping the intensity data unchanged. 
 
                 \begin{figure}[!h]
                     \centering
@@ -477,7 +474,7 @@ labelsep=endash, justification=centering]{caption}
                 %     \label{frametypes}
                 % \end{figure}
 
-                Encoding methods that depend only on the previous frame create a serially accesible frame sequence that requires that the end user download and decode all frames before a particular frame to be able to correctly view the frame. This drawback has been overcome in various ways by different codecs. For example, the MPEG-2 codec uses multiple types of frames, with each type differentiated by the amount of data they hold and dependence on previous or future frames.
+                Encoding methods that depend only on the previous frame create a serially accessible frame sequence that requires that the end user download and decode all frames before a particular frame to be able to correctly view the frame. This drawback has been overcome in various ways by different codecs. For example, the MPEG-2 codec uses multiple types of frames, with each type differentiated by the amount of data they hold and dependence on previous or future frames.
 
                 % Special frame types called I-frames (Intra-coded frames), P-frames (Predicted picture) and B-frames (Bi-predictive frame) were invented to overcome this limitation and enable video playback from almost any seek position. An I-frame is an independent frame which is encoded without considering the previous frames. I-frames are also known as \textit{keyframes} and they are very similar to a static image file in that their decode process is completely independent of every other frame. A P-frame is a uni-directional difference frame obtained from either the previous I or P-frame. A B-frame encodes the difference between its previous and next P or I frames.\cite{Choupani}
 
@@ -518,7 +515,7 @@ labelsep=endash, justification=centering]{caption}
                 Entropy coding is used to reduce statistical redundancy, i.e., use lower number of bits to represet values that occur with high frequencies and a high number of bits to represent values that occur with low frequencies. This reduces the amount of data needed to represent the overall data required to make up the data.
 
         \subsection{Transcoding}
-            Video transcoding refers to the process of data exchange between heterogenous multimedia networks to reduce the complexity and transmission time by avoiding total decoding and re-encoding of a video bitstream. Despite the fact that a video stream is generated by eliminating all redundancies, many network channels may not have the necessary capabilities to handle these streams. This restriction may be overcome by reducing the video data size through a change in video format. In terms of video properties, this change can be affected by changing bits per pixel, pixels per frame (pixel density reduction), frames per second, video content or coding standard \cite{Choupani}.
+            Video transcoding refers to the process of data exchange between heterogeneous multimedia networks to reduce the complexity and transmission time by avoiding total decoding and re-encoding of a video bitstream. Despite the fact that a video stream is generated by eliminating all redundancies, many network channels may not have the necessary capabilities to handle these streams. This restriction may be overcome by reducing the video data size through a change in video format. In terms of video properties, this change can be affected by changing bits per pixel, pixels per frame (pixel density reduction), frames per second, video content or coding standard \cite{Choupani}.
 
             Video transcoding for real-time applications on raw video data is extremely time consuming because of the motion estimation and data transformation operations. Acceptable transcoding performance for real time operations can be achieved however, if the conversion of video formats is performed on compressed data rather than raw data. A few effective compressed data video transcoding techniques include:
             \begin{itemize}
@@ -561,8 +558,6 @@ labelsep=endash, justification=centering]{caption}
         PRISM, which stands for Power-efficient, Robust, hIgh compression Syndrome-based Multimedia coding, is one of the early practical implementations of DVC. This architecture is shown in Figure \ref{prism}. More specifically, each frame is split into 8 × 8 blocks which are DCT transformed. Concurrently, a zero-motion block difference is used to estimate their temporal correlation level. This information is used to classify blocks into 16 encoding classes. One class corresponds to blocks with very low correlation which are encoded using conventional Intra- coding. Another class is made of blocks which have very high correlation and are merely signaled as skipped. Finally, the remaining blocks are encoded based on distributed coding principles. More precisely, syndrome bits are computed from the least significant bits of the transform coefficients, where the number of least significant bits depends on the estimated correlation level. 
 
         The lower part of the least significant bit planes is entropy coded with a (run, depth, path, last) 4-tuple alphabet. The upper part of the least significant bit planes is coded using a coset channel code. For this purpose, a BCH code is used, as it performs well even with small block-lengths. Conversely, the most significant bits are assumed to be inferred from the block predictor or Side Information (SI). In parallel, a 16-bit Cyclic Redundancy Check (CRC) is also computed. At the decoder, the syndrome bits are then used to correct predictors, which are generated using different motion vectors. The CRC is used to confirm whether the decoding is successful.
-        \subsection{PRISM encoder performance}
-
 
 \chapter{Machine Learning based Regression Model Training}
     \section{Dataset Characteristics}
@@ -592,234 +587,318 @@ labelsep=endash, justification=centering]{caption}
         Machine learning is a subfield of computer science that evolved from the study of pattern recognition and computational learning theory in artificial intelligence. Machine learning explores the study and construction of algorithms that can learn from and make predictions on data. Such algorithms operate by building a model from example inputs in order to make data-driven predictions or decisions, rather than following strictly static program instructions.
 
         Regression analysis is widely used for prediction and forecasting, where its use has substantial overlap with the field of machine learning. Regression analysis is also used to understand which among the independent variables are related to the dependent variable, and to explore the forms of these relationships. In restricted circumstances, regression analysis can be used to infer causal relationships between the independent and dependent variables. However this can lead to illusions or false relationships, so caution is advisable; for example, correlation does not imply causation. In a narrower sense, regression may refer specifically to the estimation of continuous response variables, as opposed to the discrete response variables used in classification. The case of a continuous output variable may be more specifically referred to as metric regression to distinguish it from related problems.
-
+        \clearpage
         
-        \subsection {Evaluation of Software Packages}
-            Two software library ecosystems were evaluated for the implementation of the regression based model training. It can be said that the ecosystem of packages and maturity is pretty good across all the platforms due to the explosion in popularity of machine learning techniques across all domains.
-            \subsubsection {Python - \textit{scikit-learn}}
-                The scikit-learn project provides an open source machine learning library for the Python programming language. The ambition of the project is to provide efficient and well-established machine learning tools within a programming environment that is accessible to non-machine learning experts and reusable in various scientific areas. The project is not a novel domain-specific language, but a library that provides machine learning idioms to a general purpose high-level language. Among other things, it includes classical learning algorithms, model evaluation and selection tools, as well as preprocessing procedures.
+    \section {Evaluation of Software Packages}
+        Two software library ecosystems were evaluated for the implementation of the regression based model training. It can be said that the ecosystem of packages and maturity is pretty good across all the platforms due to the explosion in popularity of machine learning techniques across all domains.
+        \subsection {Python - \textit{scikit-learn}}
+            The scikit-learn project provides an open source machine learning library for the Python programming language. The ambition of the project is to provide efficient and well-established machine learning tools within a programming environment that is accessible to non-machine learning experts and reusable in various scientific areas. The project is not a novel domain-specific language, but a library that provides machine learning idioms to a general purpose high-level language. Among other things, it includes classical learning algorithms, model evaluation and selection tools, as well as preprocessing procedures.
 
-                All objects within scikit-learn share a uniform common basic API consisting of three complementary interfaces: an estimator interface for building and fitting models, a predictor interface for making predictions and a transformer interface for converting data \cite{scikit-learn}.
+            All objects within scikit-learn share a uniform common basic API consisting of three complementary interfaces: an estimator interface for building and fitting models, a predictor interface for making predictions and a transformer interface for converting data \cite{scikit-learn}.
 
-            \subsubsection {R}
-                The caret package, short for classification and regression training, was built with several goals in mind:
-                \begin{enumerate}
-                    \item{to eliminate syntactical differences between many of the functions for building and predicting models,}
-                    \item{to develop a set of semi-automated, reasonable approaches for optimizing the values of the tuning parameters for many of these models and}
-                    \item{create a package that can easily be extended to parallel processing systems.}
-                \end{enumerate}
-                The package contains functionality useful in the beginning stages of a project (e.g., data splitting and pre-processing), as well as unsupervised feature selection routines and methods to tune models using resampling that helps diagnose over-fitting. \textit{caret} depends on over 25 other packages, although many of these are listed as "suggested" packages which are not automatically loaded when caret is started. Packages are loaded individually when a model is trained or predicted.
+        \subsection {R - \textit{caret}}
+            The caret package, short for classification and regression training, was built with several goals in mind:
+            \begin{enumerate}
+                \item{to eliminate syntactical differences between many of the functions for building and predicting models,}
+                \item{to develop a set of semi-automated, reasonable approaches for optimizing the values of the tuning parameters for many of these models and}
+                \item{create a package that can easily be extended to parallel processing systems.}
+            \end{enumerate}
+            The package contains functionality useful in the beginning stages of a project (e.g., data splitting and pre-processing), as well as unsupervised feature selection routines and methods to tune models using resampling that helps diagnose over-fitting. \textit{caret} depends on over 25 other packages, although many of these are listed as "suggested" packages which are not automatically loaded when caret is started. Packages are loaded individually when a model is trained or predicted.
 
-        \subsection {Regression Training using \textit{caret}}
+        The author of this report had invested a lot of time in the past year in learning and getting familiar with the R ecosystem, through his work at another startup that dealt primarily with data analytics for realtime embedded communication systems, \href{http://acerta.ca}{Acerta Analytics}. Thus, it was decided to go ahead and use R, the \textit{caret \cite{caretR}} package for regression modelling, \textit{lattice \cite{latticebook}} and \textit{ggplot2 \cite{ggplot2}} for visualizations. This decision helped save a lot of time and enabled the entire machine learning portion of this report to be complete in 4 days.
 
+    \section {Regression Training using \textit{caret}}
+        \textit{Caret} has built in methods and and objects to deal with a data set from the first step of analysis, ie., exploratory data analysis to analyze, determine and mark the predictors and the output variables that need prediction. For example, the \textit{featurePlot} function may be used to plot each of the predictor variables against each other and mainly, the output variable. This can help one understand and determine right away, the presence of any linear correlations between the predictor variables and output variable. The plots that the \textit{featurePlot} function can handle include scatterplots, overlayed density plots,  box plots that show the extent of linear correlation and scatter plots with overlayed regression line smoothers. The official documentation available at \cite{Visua58:online} explains and shows a few example plots that help one understand the dataset. 
 
-            \subsubsection{Data Splitting and Pre-processing}
+        In case of the youtube dataset, the number of predictor variables was found to be 18 and the output variables measured were the memory used for transcoding, \textit{umem} and the CPU time taken for the transcoding process, \textit{utime}. A summary of the elements present inside a data frame (standard R object) is presented below:
 
-            \subsubsection{Tuning and building models}
+        \subsection{Data pre-processing and Splitting}
+            As is evident in the summary presented above, a couple of new columns were added to convert the categorical variables for input and output codecs to integer factors. This had to be done since a few of the models being trained using the dataset are sensitive to the presence of categorical variables and are not really meant to be used with such data frame columns. An example of this can be seen in implementations of the k-Nearest Neighbors algorithm. This may be overcome by using Hamming distance instead of Euclidean distance for calculating distance between neighbors in the algorithm \cite{KnnW0:online}.
 
-            \subsubsection {Resampling and Model Cross-Validation}
-            \clearpage
+            An other addition to the dataset was the creation of a \textit{trans\_ rate} column, which stands for transcoding rate and was calculated with the following formula:
+            $$transcoding rate =  \frac{Num. of frames}{Transcoding CPU time}$$
 
-        \subsection {Testing/Training Results}
+            This has been done to ensure that the output variable being modeled for is independent of the video size, and thus, can be closer to a good measure of the case where transcoding happens in real-time, aka streaming. 
 
-            \subsubsection {Neural Network Models}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{nnetresults}
-                    \caption{}
-                    \label{nnetresults}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{nnet_pred_obs}
-                    \caption{}
-                    \label{nnet_pred_obs}
-                \end{subfigure}
-                \end{figure*}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{avnnetresults}
-                    \caption{}
-                    \label{avnnetresults}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{avnnet_pred_obs}
-                    \caption{}
-                    \label{avnnet_pred_obs}
-                \end{subfigure}
-                \end{figure*}
-                \clearpage
-            \subsubsection {Nearest Neighbor Models}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=1.2\textwidth]{knnresults}
-                    \caption{}
-                    \label{knnresults}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.5\textwidth}
-                    \centering
-                    \includegraphics[width=1.2\textwidth]{knn_pred_obs}
-                    \caption{}
-                    \label{knn_pred_obs}
-                \end{subfigure}
-                \end{figure*}
-                \clearpage
-            \subsubsection {Multivariate Adaptive Regression Splines}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{marsresults}
-                    \caption{}
-                    \label{marsresults}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{mars_pred_obs}
-                    \caption{}
-                    \label{mars_pred_obs}
-                \end{subfigure}
-                \end{figure*}
+            However, the most efficient way of determining the process of sample utilization, according to statistics, requires the usage of all the samples for training a model. Usually, this would result in a model over-fitting for the sample data. However, there are a few techniques that may be used to ensure over-fitting or under-fitting of data does not occur. These techniques, a few of which are cross-validation, bootstrapping, n-fold cross-validation and re-sampling \cite{Kuhn2008}.
 
-            \subsubsection {Resampling Statistics}
-                \begin{table}[!hp]
-                    \begin{center}
-                    \begin{tabular}{lrrrrrrr}
-                    \hline\hline
-                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
-                    \hline
-                    knn&$9.110$&$11.040$&$12.010$&$12.280$&$13.500$&$17.210$&$0$\tabularnewline
-                    mars&$4.833$&$ 5.883$&$ 6.360$&$ 6.572$&$ 7.393$&$ 9.972$&$0$\tabularnewline
-                    nnet&$3.661$&$ 6.532$&$10.680$&$10.010$&$13.260$&$17.210$&$0$\tabularnewline
-                    avnnet&$4.177$&$ 6.298$&$ 7.465$&$ 8.060$&$ 9.353$&$13.460$&$0$\tabularnewline
-                    \hline
-                    \end{tabular}\end{center}
-                    \caption{RMSE\label{RMSE}} 
-                    \end{table}
-                    %latex.default(object = object[[i]], caption = nx[i], label = nx[i],     append = file != "", title = title, file = file, caption.lot = NULL,     caption.loc = caption.loc, ...)%
-                    \begin{table}[!hp]
-                    \begin{center}
-                    \begin{tabular}{lrrrrrrr}
-                    \hline\hline
-                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
-                    \hline
-                    knn&$0.2175$&$0.3784$&$0.4366$&$0.4321$&$0.4907$&$0.6384$&$0$\tabularnewline
-                    mars&$0.7477$&$0.8197$&$0.8435$&$0.8389$&$0.8585$&$0.8990$&$0$\tabularnewline
-                    nnet&$0.2102$&$0.3626$&$0.4736$&$0.5857$&$0.8351$&$0.9568$&$0$\tabularnewline
-                    avnnet&$0.2547$&$0.6865$&$0.8000$&$0.7541$&$0.8544$&$0.9396$&$0$\tabularnewline
-                    \hline
-                    \end{tabular}
-                    \caption{$R^2$\label{Rsquared}} 
-                    \end{center}
-                    \end{table}
-                \clearpage
-            \subsubsection {Resampling Visualizations}
-                \begin{figure}[!h]
-                    \centering
-                    \includegraphics[width=\textwidth]{resamp_bwplot}
-                    \caption{}
-                    \label{resamp_bwplot}
-                \end{figure}
-                \begin{figure}[!h]
-                    \centering
-                    \includegraphics[width=\textwidth]{resamp_dotplot}
-                    \caption{}
-                    \label{resamp_dotplot}
-                \end{figure}
-                \begin{figure}[!h]
-                    \centering
-                    \includegraphics[width=\textwidth]{resamp_parallelplot}
-                    \caption{}
-                    \label{resamp_parallelplot}
-                \end{figure}
-                \clearpage
+            In the field of statistical data analysis, one of the first tasks is to determine how much of the finite dataset is to be used for model training while ensuring a certain portion of the dataset is kept aside for testing the efficacy of the model after training. Thus, it is important to ensure that a model being trained never gets exposed to the split testing /validation dataset. This is a very good measure of determining how well the model would perform when being used in real life. The main function of the test split dataset is to compare and evaluate performance across models, as a lot of statistical models are actually combinations of localized models.
 
-        \subsection{Statistical Performance Measures}
+            The \textit{caret} package, specifically has a \textit{createDataPartition} function, that analyses a dataset's characteristics such as multivariate correlation and determines the most randomized way to split the dataset. For regression, the function determines the quartiles of the data set and samples within those groups. The youtube dataset, which consists of about 69000 rows of data, would cause most models to take a lot of time to train with the computing resources available to this student. Thus, 5\% of the dataset was randomly sampled to be used as the training data. The rest of the 95\% of the dataset was then used to evaluate the performance of the models. A convenience function provided by \textit{caret}, \textit{nearZeroVar} was then used to determine a few non useful predictor variables and these were excluded from the predictors for testing and training datasets. These so-called near zero-variance predictors can cause problems during resampling for some models such as linear regression \cite{Kuhn2008}.
 
-            \subsubsection {Performance evaluation}
-                \begin{table}[!hp]
-                    \begin{center}
-                    \begin{tabular}{lrr}
-                    \hline\hline
-                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
-                    \hline
-                    KNN&$10.59699280697047$&$0.584605561041047$\tabularnewline
-                    AvgNN&$ 6.95034584039986$&$0.843654549692612$\tabularnewline
-                    MARS&$ 6.29845637084742$&$0.850651878271596$\tabularnewline
-                    NN&$ 4.01016583316771$&$0.939547289034280$\tabularnewline
-                    \hline
-                    \end{tabular}
-                    \caption{Results of model performance on trained dataset}
-                    \label{test-res}
-                    \end{center}
+            This concludes the data pre-processing portion of this analysis. The function used by \textit{caret} to train using a model, the \textit{train} function, takes a \textit{preProc} argument that can be used to center and scale predictor variables, as required by models such as neural networks.
+        \subsection{Tuning and building models}
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=0.8\textwidth]{training}
+                \caption{Standard operating procedure to tune a model's parameters \cite{Model99:online}}
+                \label{training}
+            \end{figure}
 
+            The general process that needs to be followed to do efficient parameter tuning while building a model is shown in Figure. \ref{training}. The \textit{caret} package has several functions that streamline the process of model building, tuning and evaluation. The \textit{train} function can be used to 
+            \begin{itemize}
+                \item {Evaluate, using resampling the effects of model parameter tuning on performance}
+                \item {Choose the optimal model across these parameters}
+                \item{Estimate model performance from a training set}\cite{Model99:online}
+            \end{itemize}
+            
+            The models trained the youtube dataset were the following:
+                \paragraph{k-Nearest Neightbors}
+                    k-Nearest Neighbors (kNN) is a non parametric lazy learning algorithm which defers the decision to generalize beyond the training samples till a new query is encountered. For regression, kNN may be used to estimate continuous variables. It works by using a weighted average of the k-nearest neighbors ,weighted by the inverse of their Euclidean or Manhattan distance.
+                    \begin{itemize}
+
+                    \item{Parameters and Evaluation metrics:} % (fold)
+
+                        The parameters to tune in the kNN model is the number of nearest neighbors used to compute the distance from existing samples for a new sample, \textbf{k}.
+
+                        kNN maybe evaluated using the Root Mean Squared Error, RMSE.
+                    
+                    \end{itemize}
+
+                \paragraph{Neural Networks}
+                    \begin{figure}[!h]
+                        \centering
+                        \includegraphics[width=0.4\textwidth]{anns}
+                        \caption{A neural network (a deep learning tool) \cite{What93:online}}
+                        \label{anns}
+                    \end{figure}
+                    Artificial Neural networks are computing systems made up of a number of simple, highly interconnected processing elements, which process information by their dynamic state response to external inputs. Neural networks are typically organized in layers. Layers are made up of a number of interconnected 'nodes' which contain an 'activation function'. Patterns are presented to the network via the 'input layer', which communicates to one or more 'hidden layers' where the actual processing is done via a system of weighted 'connections'. The hidden layers then link to an 'output layer' where the answer is output as shown in Figure \ref{anns}.
+                    \begin{itemize}
+                        \item{Parameters and Evaluation metrics:}
+                            An ANN maybe described by two parameters, size and decay. Its performance can be evaluated using regression plots, and RMSE and the coefficient of determination, $R^2$, which is a measure of how well the model was able to predict each sample.
+                    \end{itemize}
+
+                \paragraph{Multiple Adaptive Regressive Splines (MARS)}
+                    MARS is a form of regression analysis introduced by Jerome H. Friedman in 1991. It is a non-parametric regression technique and can be seen as an extension of linear models that automatically models nonlinearities and interactions between variables. The MARS model is a weighted sum of Basis functions, $$f(x) = \sum_{1=1}^{k}c_i B_i(x)$$ \cite{friedman1991multivariate}. $c_i$ is a constant coefficient. Each basis function can take three different forms - a constant, a hinge function and a product of two or more hinge functions.
+
+                    MARS models may also be evaluated using the standard regression measures RMSE and the coefficient of determination, $R^2$
+
+        \subsection {Resampling and Model Cross-Validation}
+            Resampling is the process of creation of modified datasets from the training dataset. Each data set has a corresponding set of hold-out samples. For each candidate tuning parameter combination, a model is fit to each resampled data set and is used to predict the corresponding held out samples. The resampling performance is estimated by aggregating the results of each hold-out sample set. These performance estimates are used to evaluate which combination(s) of the tuning parameters are appropriate. Once the final tuning values are assigned, the final model is refit using the entire training set \cite{Kuhn2008}.
+
+            For the \textit{train} function, the possible resampling methods are: bootstrapping, k-fold crossvalidation, leave-one-out cross-validation, and leave-group-out cross-validation (i.e., repeated splits without replacement). By default, 25 iterations of the bootstrap are used as the resampling scheme. ALll the models used for the youtube dataset training, used 10-fold cross-validation repeated 10 times to ensure proper fitting of sample data.
+
+            The train function can also perform cross validation, this setting maybe configured in the tuneGrid and trainControl function arguments. Please refer to Appendix \ref{rcode} for the actual code that shows these parameters.
+        \clearpage
+
+    \section {Testing/Training Results}
+
+        \subsection {Neural Network Models}
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{nnetresults}
+                \caption{Peformance Tuning}
+                \label{nnetresults}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{nnet_pred_obs}
+                \caption{Regression plot}
+                \label{nnet_pred_obs}
+            \end{subfigure}
+            \caption{Neural Network Performance Metrics}
+            \end{figure*}
+            The neural network model performed exceptionally well in fitting both the training and test datasets to itself. This is evident in Fig. \ref{nnet_pred_obs}. Fig. \ref{nnetresults} shows how the RMSE changes as the number of hidden units in the neural network are increased. The best performance seems to have happened when using a decay of 0 and hidden unit size of 5. Please refer to Table \ref{RMSE} and Table \ref{Rsquared} for specific values of performance measures RMSE and $R_2$.
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{avnnetresults}
+                \caption{}
+                \label{avnnetresults}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{avnnet_pred_obs}
+                \caption{}
+                \label{avnnet_pred_obs}
+            \end{subfigure}
+            \caption{avg Neural Network Performance Measures}
+            \end{figure*}
+
+            The averaged neural network performed slightly worse than a simple neural network on both the training and test datasets. THis may be noticeable because of the amount of variation from the regression line in Fig. \ref{avnnet_pred_obs}. Its best performance, when evaluated using the RMSE, seems to have happened with a weight decay parameter of 0.1. Please refer to Table \ref{RMSE} and Table \ref{Rsquared} for specific values of performance measures RMSE and $R^2$
+        \subsection {Nearest Neighbor Models}
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{knnresults}
+                \caption{}
+                \label{knnresults}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{knn_pred_obs}
+                \caption{}
+                \label{knn_pred_obs}
+            \end{subfigure}
+            \caption{kNN Performance Measures}
+            \end{figure*}
+
+            The performance of the k-Nearest Neighbor model decreased while k was increased till $k = 7$. Then its performance exponentially degraded as k increased further higher. Its regression plot, in Fig. \ref{knn_pred_obs}, also shows a lot of both the training and test samples having higher degree of error from the regression line. Please refer to Table \ref{RMSE} and Table \ref{Rsquared} for specific values of performance measures RMSE and $R^2$
+
+        \subsection {Multivariate Adaptive Regression Splines}
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{marsresults}
+                \caption{}
+                \label{marsresults}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[width=1.1\textwidth]{mars_pred_obs}
+                \caption{}
+                \label{mars_pred_obs}
+            \end{subfigure}
+            \caption{MARS Performance Measures}
+            \end{figure*}
+
+            The performance of the MARS model almost rivals that of the neural network model. In fact, there is no way to differentiate between their regression fit without referring to $R^2$ values. Its performance increased exponentially when the number of basis functions was increased with the best performance deemed to have occurred with about 37 basis functions in the models. Please refer to Table \ref{RMSE} and Table \ref{Rsquared} for specific values of performance measures RMSE and $R^2$
+
+        \subsection {Resampling Statistics}
+            This section shows the variation of the performance measures Root MEan Squared Error (RMSE) and $R^2$ across different resamples of the training data. In summary, it maybe said that both the MARS neural network models. THe average neural network model seemed to show a more reliable and consistent RMSE and $R^2$ values across multiple resamples.
+            \begin{table}[!hp]
+                \begin{center}
+                \begin{tabular}{lrrrrrrr}
+                \hline\hline
+                \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+                \hline
+                knn&$9.110$&$11.040$&$12.010$&$12.280$&$13.500$&$17.210$&$0$\tabularnewline
+                mars&$4.833$&$ 5.883$&$ 6.360$&$ 6.572$&$ 7.393$&$ 9.972$&$0$\tabularnewline
+                nnet&$3.661$&$ 6.532$&$10.680$&$10.010$&$13.260$&$17.210$&$0$\tabularnewline
+                avnnet&$4.177$&$ 6.298$&$ 7.465$&$ 8.060$&$ 9.353$&$13.460$&$0$\tabularnewline
+                \hline
+                \end{tabular}\end{center}
+                \caption{RMSE\label{RMSE}} 
                 \end{table}
-
+                %latex.default(object = object[[i]], caption = nx[i], label = nx[i],     append = file != "", title = title, file = file, caption.lot = NULL,     caption.loc = caption.loc, ...)%
                 \begin{table}[!hp]
-                    \begin{center}
-                    \begin{tabular}{lrr}
-                    \hline\hline
-                    \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
-                    \hline
-                    KNN&$12.44409507063652$&$0.403246960924018$\tabularnewline
-                    AvgNN&$ 8.21448372643189$&$0.764592868929468$\tabularnewline
-                    MARS&$ 6.86267500478760$&$0.818602643604257$\tabularnewline
-                    NN&$ 4.81454518621358$&$0.911059846936685$\tabularnewline
-                    \hline
-                    \end{tabular}
-                    \caption{Results of model performance on the complete dataset}
-                    \label{test-res}
-                    \end{center}
+                \begin{center}
+                \begin{tabular}{lrrrrrrr}
+                \hline\hline
+                \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{Min.}&\multicolumn{1}{c}{1st Qu.}&\multicolumn{1}{c}{Median}&\multicolumn{1}{c}{Mean}&\multicolumn{1}{c}{3rd Qu.}&\multicolumn{1}{c}{Max.}&\multicolumn{1}{c}{NA's}\tabularnewline
+                \hline
+                knn&$0.2175$&$0.3784$&$0.4366$&$0.4321$&$0.4907$&$0.6384$&$0$\tabularnewline
+                mars&$0.7477$&$0.8197$&$0.8435$&$0.8389$&$0.8585$&$0.8990$&$0$\tabularnewline
+                nnet&$0.2102$&$0.3626$&$0.4736$&$0.5857$&$0.8351$&$0.9568$&$0$\tabularnewline
+                avnnet&$0.2547$&$0.6865$&$0.8000$&$0.7541$&$0.8544$&$0.9396$&$0$\tabularnewline
+                \hline
+                \end{tabular}
+                \caption{$R^2$\label{Rsquared}} 
+                \end{center}
                 \end{table}
-                \clearpage
-            \subsubsection {Variable Importance}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{avnnetvarimp}
-                    \caption{}
-                    \label{avnnetvarimp}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{marsvarimp}
-                    \caption{}
-                    \label{marsvarimp}
-                \end{subfigure}
-                \end{figure*}
-                \begin{figure*}[!ht]
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{nnetvarimp}
-                    \caption{}
-                    \label{nnetvarimp}
-                \end{subfigure}%
-                    ~ 
-                \begin{subfigure}[t]{0.45\textwidth}
-                    \centering
-                    \includegraphics[width=\textwidth]{knnvarimp}
-                    \caption{}
-                    \label{knnvarimp}
-                \end{subfigure}
-                \end{figure*}
-                
+        \subsection {Resampling Visualizations}
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{resamp_bwplot}
+                \caption{Box whisker plot of RMSE and $R^2$ variation across resamples}
+                \label{resamp_bwplot}
+            \end{figure}
+            Figures. \ref{resamp_bwplot} and \ref{resamp_dotplot} are visual representation of the data presented in Table \ref{RMSE}. Once again, the MARS model is deemed to be the most consistent model because of its low variation of RMSE and $R^2$ values across resamples. These plots make it very clear that the MARS model fit the training data consistently.
+            
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{resamp_dotplot}
+                \caption{Dot plot of RMSE and $R^2$ variation across resamples}
+                \label{resamp_dotplot}
+            \end{figure}
+
+            \begin{figure}[!h]
+                \centering
+                \includegraphics[width=\textwidth]{resamp_parallelplot}
+                \caption{Parallel plot of RMSE and $R^2$ variation across resamples}
+                \label{resamp_parallelplot}
+            \end{figure}
+            Figure \ref{resamp_parallelplot} shows how the RMSE varied for each model across resamp runs. Please note that this is a measure of cross-validation across models for each resample of the training data set. This maybe achieved by using \textit{caret's} \textit{resamples} function that takes in a list of trained models and a training dataset and a number of iterations of the resample process. All the relevant code for producing this cross-model resampling and visualization is also available in Appendix \ref{rcode} towards the end.
+
+    \section{Statistical Performance Measures}
+
+        \subsection {Performance evaluation}
+            \begin{table}[!hp]
+                \begin{center}
+                \begin{tabular}{lrr}
+                \hline\hline
+                \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
+                \hline
+                KNN&$10.59699280697047$&$0.584605561041047$\tabularnewline
+                AvgNN&$ 6.95034584039986$&$0.843654549692612$\tabularnewline
+                MARS&$ 6.29845637084742$&$0.850651878271596$\tabularnewline
+                NN&$ 4.01016583316771$&$0.939547289034280$\tabularnewline
+                \hline
+                \end{tabular}
+                \caption{Results of model performance on trained dataset}
+                \label{train-res}
+                \end{center}
+
+            \end{table}
+            Table \ref{train-res} shows the best case performance of each model on the training dataset. The neural network comes out on top when evaluated using this data only. MARS comes behind in a close second place. 
+
+            \begin{table}[!hp]
+                \begin{center}
+                \begin{tabular}{lrr}
+                \hline\hline
+                \multicolumn{1}{l}{Model}&\multicolumn{1}{c}{rmse}&\multicolumn{1}{c}{r2}\tabularnewline
+                \hline
+                KNN&$12.44409507063652$&$0.403246960924018$\tabularnewline
+                AvgNN&$ 8.21448372643189$&$0.764592868929468$\tabularnewline
+                MARS&$ 6.86267500478760$&$0.818602643604257$\tabularnewline
+                NN&$ 4.81454518621358$&$0.911059846936685$\tabularnewline
+                \hline
+                \end{tabular}
+                \caption{Results of model performance on the complete dataset}
+                \label{test-res}
+                \end{center}
+            \end{table}
+            Table \ref{test-res} shows the best case performance of each model on the test data set. This table is arguably a lot more important for performance evaluation as it eliminates the possibilities of over fitted models, etc. Once again, the neural network ended with a performance very similar to its performance on the training dataset. COnsidering that the training set was only 5\% of the total dataset, this performance is actually extremely good. The MARS model, on the other hand, seems to have faltered on the test dataset as its $R^2$ value decreased slightly and the RMSE values increased by a tiny bit. In terms of RMSE however, The NN model comes out on top again with an RMSE value of 4.84. 
+        \subsection {Variable Importance}
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[height=5cm]{avnnetvarimp}
+                \caption{avgNNet Important Predictors}
+                \label{avnnetvarimp}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[height=5cm]{marsvarimp}
+                \caption{MARS Important Predictors}
+                \label{marsvarimp}
+            \end{subfigure}
+            \end{figure*}
+            \begin{figure*}[!ht]
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[height=5cm]{nnetvarimp}
+                \caption{NNet Important Predictors}
+                \label{nnetvarimp}
+            \end{subfigure}%
+                ~ 
+            \begin{subfigure}[t]{0.5\textwidth}
+                \centering
+                \includegraphics[height=5cm]{knnvarimp}
+                \caption{K-Nearest neighbors important predictors}
+                \label{knnvarimp}
+            \end{subfigure}
+            \caption{Top Predictors for Each Model}
+            \end{figure*}
+            This section intends to show the importance of the non-applicability of linear models to complex datasets like the youtube dataset where the number of predictors are very high with complex inter-predictor relationships.
 
     % \section{}
 \chapter{Conclusions and Recommendations}
     \section{Conclusions}
+        In conclusion, it is recommended that one use the neural network model file available at the Github repository for this report, cited here \cite{prajn0:online}. This file maybe loaded into an R environment using the $load(filename)$ function call and new datasets maybe used to gain predictions of 
     \section{Recommendations}
+        It is recommended that the models be re-trained using additional computational power and a much bigger portion of the youtube dataset. Even though the models generated got a pretty good fit, the amount of time taken to train each model was extremely high for the hardware available for the author, a paltry Macbook Air 13" with no GPU processing power. It is also recommended that the youtube dataset be used to train a Support Vector Machine dataset in hopes of gaining a better fitting model.
 
 \appendix
 \chapter{Appendix}
     \section{Programming Code}
+        \label{rcode}
         All the code used to generate the visualizations for this report can be found in the github repository located at \href{https://github.com/prajnak/machine_learning_experiments}{Github}.
         \subsection {Model Training and Results Visualization - models.R}
         \begin{multicols}{2}
@@ -1004,7 +1083,7 @@ labelsep=endash, justification=centering]{caption}
         \end{minted}
         \end{multicols}
         \clearpage
-    \section {Youtube Video CHaracteristics}
+    \section {Youtube Video Dataset Characteristics}
         \label{app:ytvideo}
         \begin{figure}[!h]
             \centering
